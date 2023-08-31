@@ -13,6 +13,11 @@ const createschema = new mongoose.Schema({
   
   img_fileUrl: String, // This field will store the URL of the uploaded file
   pdf_fileUrl: String, // This field will store the URL of the uploaded file
+  user: {
+    name: String,
+    email: String,
+    profileImageUrl: String,
+  },
 });
 
 const createModel = mongoose.model('create', createschema);

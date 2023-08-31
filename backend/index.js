@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
+const jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt'); // Import express-jwt
 const signupModel = require('./models/signup.js');
 const createmodel = require('./models/create.js');
 const app = express();
@@ -29,6 +31,11 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '-' + file.originalname);
   },
 });
+
+const jwtSecret = 'your_secret_key_here';
+
+// Middleware to authenticate and populate req.user
+// app.use(expressJwt({ secret: jwtSecret, algorithms: ['HS256'] }));
 
 const upload = multer({ storage: storage });
 
@@ -90,23 +97,48 @@ app.post('/login', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-app.post('/create', upload.single('file'), async (req, res) => {
-  const { placename,
 
+
+const uploads = multer({ dest: 'uploads/' });
+
+const File = mongoose.model('File', {
+  name: String,
+  path: String,
+});
+
+app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), async (req, res) => {
+  const {
+    name,
     continent,
     state,
     city,
     country,
     title,
     sub_title,
-    Description, } = req.body;
-  const img_file = req.file;
-  const pdf_file=req.file;
+    Description,
+    loggedInUserEmail,
+  } = req.body;
+
+  const imageFiles = req.files['imgFile'];
+  const pdfFiles = req.files['pdfFile'];
 
   try {
-    const newUser = new createmodel({
-      placename,
+    const newImageFile = new File({ name: imageFiles[0].originalname, path: imageFiles[0].path.replace(/\\/g, '/').replace('uploads/', '') });
+    const newPdfFile = new File({ name: pdfFiles[0].originalname, path: pdfFiles[0].path.replace(/\\/g, '/').replace('uploads/', '') });
 
+    await newImageFile.save();
+    await newPdfFile.save();
+
+    // Fetch logged-in user details from signupModel based on their email
+    // const loggedInUserEmail = 'user@example.com'; // Replace with actual logged-in user's email
+    const loggedInUser = await signupModel.findOne({ email: loggedInUserEmail });
+
+    if (!loggedInUser) {
+      return res.status(404).send('Logged-in user not found.');
+    }
+
+    const newUser = new createmodel({
+      name,
       continent,
       state,
       city,
@@ -114,17 +146,24 @@ app.post('/create', upload.single('file'), async (req, res) => {
       title,
       sub_title,
       Description,
-      img_fileUrl: file.filename, // Use 'file.filename' or the relative path of the file
-      pdf_file: file.filename
+      img_fileUrl: newImageFile.path,
+      pdf_fileUrl: newPdfFile.path,
+      user: {
+        name: loggedInUser.name,
+        email: loggedInUser.email,
+        file: loggedInUser.fileUrl,
+      },
     });
 
     await newUser.save();
-    res.status(201).send('User registered successfully.');
+    res.status(201).send('Blog created successfully.');
   } catch (err) {
-    console.error('Error saving user:', err);
-    res.status(500).send('Error saving user.');
+    console.error('Error creating blog:', err);
+    res.status(500).send('Error creating blog.');
   }
 });
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

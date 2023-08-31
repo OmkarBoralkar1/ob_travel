@@ -14,24 +14,25 @@ export default function Create() {
     // const [file, setFile] = useState(null);
     const [file, setSelectedPdfFiles] = useState([]);
     const [imgFile, setSelectedImageFiles] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
+
     const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
     const [profileImageUrl, setProfileImageUrl] = useState('');
     const navigate = useNavigate();
-    const isAuthenticated = true;
-    const handleSubmit = (e) => {
+   
+    const [loggedInUserEmail, setLoggedInUserEmail] = useState(''); 
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Handle form submission logic here
-        console.log('Name:', name);
-        console.log('Continent:', continent);
-        console.log('Country:', country);
-        console.log('State:', state);
-        console.log('City:', city);
-        console.log('title:', title);
-        console.log('sub-title:', subtitle);
-        console.log('Description:', description);
-        console.log('File:', file);
-        console.log('imgFile:', imgFile);
+        // console.log('Name:', name);
+        // console.log('Continent:', continent);
+        // console.log('Country:', country);
+        // console.log('State:', state);
+        // console.log('City:', city);
+        // console.log('title:', title);
+        // console.log('sub-title:', subtitle);
+        // console.log('Description:', description);
+        // console.log('File:', file);
+        // console.log('imgFile:', imgFile);
         try {
             const formData = new FormData();
             formData.append('Name', name);
@@ -42,13 +43,13 @@ export default function Create() {
             formData.append('title:', title);
             formData.append('sub-title:', subtitle);
             formData.append('Description:', description);
-            formData.append('File:', file);
-            formData.append('imgFile:', imgFile);
-      
-            const response =  axios.post('http://localhost:3001/create', formData, {
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
+            formData.append('imgFile', imgFile[0]); // Make sure you handle the file array properly
+            formData.append('pdfFile', file[0]);
+            formData.append('loggedInUserEmail', loggedInUserEmail);
+            const response = await axios.post('http://localhost:3001/create', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
       
             console.log('Response:', response.data);
@@ -56,7 +57,7 @@ export default function Create() {
             if (response.status === 201) {
               alert('You have successfully connected to the database');
               console.log('The response stored in the database is', response);
-              navigate('../login'); // Navigate to the login page (remove .js)
+              navigate('/'); // Navigate to the login page (remove .js)
             }
           } 
           catch (error) {
@@ -71,9 +72,15 @@ export default function Create() {
         if (storedIsLoggedIn === 'true') {
           setIsLoggedIn(true);
         }
+        const storedEmail = localStorage.getItem('loggedInUserEmail');
+
+        if (storedEmail) {
+          setLoggedInUserEmail(storedEmail);
+        }
+      }, []);
       
         
-      }, []);
+    
     const handlePdfFileChange = (e) => {
         const uploadedPdfFiles = Array.from(e.target.files);
         setSelectedPdfFiles(uploadedPdfFiles);

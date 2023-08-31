@@ -53,7 +53,7 @@ const LoginForm = ({ setIsLoggedIn }) => {
 
   return (
     <form className={styles['login-form']} onSubmit={handleSubmit}>
-      <div class="login">
+      <div className="login">
         <h1>Login </h1>
         <label htmlFor="email" className={styles['login-label']}>
           Email:
