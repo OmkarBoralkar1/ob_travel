@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
-const jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt'); // Import express-jwt
+
 const signupModel = require('./models/signup.js');
 const createmodel = require('./models/create.js');
+const path = require('path');
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use('/uploads', express.static(path.join(__dirname, 'frontend', 'uploads')));
 const PORT = 3001;
 
 mongoose.connect('mongodb://127.0.0.1:27017/travel', {
@@ -32,7 +32,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const jwtSecret = 'your_secret_key_here';
+
 
 // Middleware to authenticate and populate req.user
 // app.use(expressJwt({ secret: jwtSecret, algorithms: ['HS256'] }));
@@ -78,16 +78,12 @@ app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await signupModel.findOne({ email, password, });
+    const user = await signupModel.findOne({ email, password });
 
     if (user) {
-      if (user) {
-        const profileImageUrl = user.fileUrl;
-        res.status(200).json({ message: 'Authentication successful', profileImageUrl });
-        console.log(" the res.status is", res)
-      } else {
-        res.status(401).json({ message: 'Authentication failed' });
-      }
+      const profileImageUrl = user.fileUrl; // Make sure the field name matches your schema
+      console.log("the profile imagre url in the login api is", profileImageUrl)
+      res.status(200).json({ message: 'Authentication successful', profileImageUrl });
     } else {
       // No user found with provided credentials
       res.status(401).json({ message: 'Authentication failed' });
@@ -98,7 +94,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
 const uploads = multer({ dest: 'uploads/' });
 
 const File = mongoose.model('File', {
@@ -107,24 +102,24 @@ const File = mongoose.model('File', {
 });
 
 app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), async (req, res) => {
+  const { loggedInUserEmail } = req.body;
+  console.log('loggedInUserEmail:', loggedInUserEmail);
   const {
-    name,
-    continent,
-    state,
-    city,
-    country,
+    Name,
+    Continent,
+    State,
+    City,
+    Country,
     title,
     sub_title,
     Description,
-    loggedInUserEmail,
   } = req.body;
-
   const imageFiles = req.files['imgFile'];
   const pdfFiles = req.files['pdfFile'];
 
   try {
-    const newImageFile = new File({ name: imageFiles[0].originalname, path: imageFiles[0].path.replace(/\\/g, '/').replace('uploads/', '') });
-    const newPdfFile = new File({ name: pdfFiles[0].originalname, path: pdfFiles[0].path.replace(/\\/g, '/').replace('uploads/', '') });
+    const newImageFile = new File({ name: imageFiles[0].originalname, path: imageFiles[0].path.replace('uploads/', '') });
+    const newPdfFile = new File({ name: pdfFiles[0].originalname, path: pdfFiles[0].path.replace('uploads/', '') });
 
     await newImageFile.save();
     await newPdfFile.save();
@@ -134,15 +129,15 @@ app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), 
     const loggedInUser = await signupModel.findOne({ email: loggedInUserEmail });
 
     if (!loggedInUser) {
-      return res.status(404).send('Logged-in user not found.');
+      return res.status(410).send('Logged-in user not found.');
     }
 
     const newUser = new createmodel({
-      name,
-      continent,
-      state,
-      city,
-      country,
+      Name,
+      Continent,
+      State,
+      City,
+      Country,
       title,
       sub_title,
       Description,
@@ -151,7 +146,7 @@ app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), 
       user: {
         name: loggedInUser.name,
         email: loggedInUser.email,
-        file: loggedInUser.fileUrl,
+        file: loggedInUser.filename,
       },
     });
 

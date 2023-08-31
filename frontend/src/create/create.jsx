@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import createStyles from './create.module.css'; // Import the CSS styles as an object
-import { Await, useNavigate } from 'react-router-dom';
+import createStyles from './create.module.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 export default function Create() {
     const [name, setName] = useState('');
     const [continent, setContinent] = useState('');
@@ -11,90 +12,76 @@ export default function Create() {
     const [description, setDescription] = useState('');
     const [title, settitle] = useState('');
     const [subtitle, setsubtitle] = useState('');
-    // const [file, setFile] = useState(null);
-    const [file, setSelectedPdfFiles] = useState([]);
-    const [imgFile, setSelectedImageFiles] = useState([]);
+    const [file, setFile] = useState(null);
+    const [imgFile, setImgFile] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loggedInUserEmail, setLoggedInUserEmail] = useState('');
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
-    const [profileImageUrl, setProfileImageUrl] = useState('');
     const navigate = useNavigate();
-   
-    const [loggedInUserEmail, setLoggedInUserEmail] = useState(''); 
+
+    useEffect(() => {
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+        console.log("the loggin value is sored is",storedIsLoggedIn)
+        if (storedIsLoggedIn === 'true') {
+            setIsLoggedIn(true);
+        }
+        
+        const storedEmail = localStorage.getItem('loggedInUserEmail');
+        console.log("the actual email stored is",storedEmail )
+        if (storedEmail) {
+            setLoggedInUserEmail(storedEmail);
+        }
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        // console.log('Name:', name);
-        // console.log('Continent:', continent);
-        // console.log('Country:', country);
-        // console.log('State:', state);
-        // console.log('City:', city);
-        // console.log('title:', title);
-        // console.log('sub-title:', subtitle);
-        // console.log('Description:', description);
-        // console.log('File:', file);
-        // console.log('imgFile:', imgFile);
+        
         try {
             const formData = new FormData();
             formData.append('Name', name);
-            formData.append('Continent:', continent);
-            formData.append('Country:', country);
-            formData.append('State:', state);
-            formData.append('City:', city);
-            formData.append('title:', title);
-            formData.append('sub-title:', subtitle);
-            formData.append('Description:', description);
-            formData.append('imgFile', imgFile[0]); // Make sure you handle the file array properly
-            formData.append('pdfFile', file[0]);
+            formData.append('Continent', continent);
+            formData.append('Country', country);
+            formData.append('State', state);
+            formData.append('City', city);
+            formData.append('title', title);
+            formData.append('sub-title', subtitle);
+            formData.append('Description', description);
+            formData.append('pdfFile', file);
+            formData.append('imgFile', imgFile);
             formData.append('loggedInUserEmail', loggedInUserEmail);
+
             const response = await axios.post('http://localhost:3001/create', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-      
+
             console.log('Response:', response.data);
-      
+
             if (response.status === 201) {
-              alert('You have successfully connected to the database');
-              console.log('The response stored in the database is', response);
-              navigate('/'); // Navigate to the login page (remove .js)
+                alert('You have successfully created a blog.');
+                navigate('/'); // Navigate to the desired page after successful submission
             }
-          } 
-          catch (error) {
+        }
+        catch (error) {
             console.error('Error:', error);
             alert('Error connecting to the server. Please try again later.');
-          }
-        };
-    useEffect(() => {
-        const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
-        const storedProfileImageUrl = localStorage.getItem('profileImageUrl');
-      
-        if (storedIsLoggedIn === 'true') {
-          setIsLoggedIn(true);
         }
-        const storedEmail = localStorage.getItem('loggedInUserEmail');
+    };
 
-        if (storedEmail) {
-          setLoggedInUserEmail(storedEmail);
-        }
-      }, []);
-      
-        
-    
     const handlePdfFileChange = (e) => {
-        const uploadedPdfFiles = Array.from(e.target.files);
-        setSelectedPdfFiles(uploadedPdfFiles);
+        setFile(e.target.files[0]);
     };
 
     const handleImageFileChange = (e) => {
-        const uploadedImageFiles = Array.from(e.target.files);
-        setSelectedImageFiles(uploadedImageFiles);
+        setImgFile(e.target.files[0]);
     };
+
     return (
         <div>
             <h1></h1><br></br><br></br><br></br>
             <h1></h1><br></br><br></br>
-            {isLoggedIn  ?
+            {isLoggedIn ?
                 (
                     <div>
                         <h1>Create your blog</h1>
@@ -216,11 +203,11 @@ export default function Create() {
                     </div>
 
 
-   ) : (
-    <p>Please log in to create a blog.</p>
-   )}
-</div>
-);
+                ) : (
+                    <p>Please log in to create a blog.</p>
+                )}
+        </div>
+    );
 }
 
 

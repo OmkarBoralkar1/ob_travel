@@ -28,13 +28,13 @@ const App = () => {
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     const storedProfileImageUrl = localStorage.getItem('profileImageUrl');
-  
+    // console.log("the profile picture url from navbar is", storedProfileImageUrl)
     if (storedIsLoggedIn === 'true') {
       setIsLoggedIn(true);
     }
-  
+
     if (storedProfileImageUrl) {
-      console.log("store profile imageurl is jfhr3giutghibygiuth4g",  localStorage.getItem('profileImageUrl'));
+      console.log("store profile imageurl is jfhr3giutghibygiuth4g", localStorage.getItem('profileImageUrl'));
       setProfileImageUrl(storedProfileImageUrl);
     }
   }, []);
@@ -64,22 +64,22 @@ const App = () => {
               <li className="Login">
                 {isLoggedIn ? (
                   <div className="profile-link">
-                    
+
                     <span onClick={handleLogout}>Logout</span>
 
                   </div>
-                   
-                  
 
-                    
+
+
+
                 ) : (
                   <Link to="/login">Login</Link>
                 )}
               </li>
-                    
-                  
 
-            
+
+
+
               <li className="create-blogs">
                 <Link to="/create"><span>Create-blogs</span></Link>
               </li>
@@ -89,9 +89,9 @@ const App = () => {
               <li className="Login">
                 {isLoggedIn ? (
                   <div className="profile-link">
-                   
-                   <img
-                   className='picture'
+
+                    <img
+                      className='picture'
                       src={`http://localhost:3001/uploads/${localStorage.getItem('profileImageUrl')}`}
                       alt="Profile"
                     />

@@ -32,13 +32,11 @@ const LoginForm = ({ setIsLoggedIn }) => {
       
         if (response.status === 200) {
           setProfileImageUrl(response.data.profileImageUrl);
-          console.log("the profile image url is",setProfileImageUrl)
           setIsLoggedIn(true);
-          
-          // Store login status and profile image URL in local storage
           localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('profileImageUrl', setProfileImageUrl);
-          
+          localStorage.setItem('loggedInUserEmail', email); // Set the email in local storage
+          localStorage.setItem('profileImageUrl', response.data.profileImageUrl);
+          console.log("the profile picture is from loggined",response.data.profileImageUrl)
           navigate('/');
         } else {
           alert('Authentication failed');
