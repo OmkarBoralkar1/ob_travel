@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const createschema = new mongoose.Schema({
-  placename: String,
+  Name: String,
   
-  continent: String,
-  state: String,
-  city: String,
-  country: String,
+  Continent: String,
+  State: String,
+  City: String,
+  Country: String,
   title: String,
   sub_title: String,
   Description: String,

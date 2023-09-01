@@ -1,5 +1,6 @@
-import React from 'react';
+
 import homeStyles from './home.module.css'; // Import the CSS module
+import React, { useState, useEffect } from 'react';
 // Import the background image using a relative path
 import contentImage from '../pictures/stock-photo-141823007-1500x1000.jpg'; // Import the content image using a relative path
 import { Link } from 'react-router-dom';
@@ -9,7 +10,16 @@ import victoria from '../pictures/Victoria-falls (2).jpg'
 import matheran from '../pictures/Matheran.jpeg'
 import bilkat from '../pictures/bilkat.mp4'
 import borabora from '../pictures/bora-bora-island.jpg'
+import axios from 'axios';
 export default function Home() {
+  const [popularBlogs, setPopularBlogs] = useState([]);
+  const [error, setError] = useState(null);
+  useEffect(()=>{
+    axios.get('http://localhost:3001/popularblogs')
+    .then(popularBlogs => setPopularBlogs(popularBlogs.data))
+    .catch(err => console.log(err))
+  },[])
+  
   return (
     <div>
       <div className={homeStyles['home-body']}>
@@ -23,7 +33,7 @@ export default function Home() {
           </div>
         </div>
         <h1></h1><br></br><br></br><br></br>
-        
+
         <h1>Popular places</h1>
         <div className={homeStyles['home-row']}>
           <div className={homeStyles['home-content']}>
@@ -107,10 +117,30 @@ export default function Home() {
               <h1>This is the nice place of the Brazil</h1>
             </Link>
           </div>
-
-
+          </div>
+         
+          <h1> Blogs from the database</h1>
+        <div className={homeStyles['home-row']}>
+            {error ? (
+              <p>Error fetching popular blogs. Please try again later.</p>
+            ) : (
+              <div className={homeStyles['home-body']}>
+                {/* Your other content here */}
+                {popularBlogs.map((blog) => (
+                  <div className={homeStyles['home-content']} key={blog._id}>
+                    <Link className={homeStyles['home-content-link']} to={`/details/${blog._id}`}>
+                      <img className={homeStyles['home-image']} src={blog.img_fileUrl} alt="image" />
+                      <h1>{blog.title}</h1>
+                      <p>Place: {blog.Continent}</p>
+                      <p>Country: {blog.Country}</p>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+      
+      );
 }

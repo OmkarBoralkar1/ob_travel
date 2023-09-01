@@ -6,13 +6,14 @@ import LoginForm from './login/login';
 import Home from './home/home';
 import Create from './create/create';
 import MyBlogs from './my-blogs/my-blogs';
+import Demoimg from './demoimg/demoimg';
 import { AiOutlineSearch } from "react-icons/ai";
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track user login status
   const [profileImageUrl, setProfileImageUrl] = useState('');
-
+  const [loggedInUserEmail, setLoggedInUserEmail] = useState('');
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -26,12 +27,20 @@ const App = () => {
 
   // Retrieve login status and profile image URL from local storage on component mount
   useEffect(() => {
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+  
     const storedProfileImageUrl = localStorage.getItem('profileImageUrl');
     // console.log("the profile picture url from navbar is", storedProfileImageUrl)
-    if (storedIsLoggedIn === 'true') {
-      setIsLoggedIn(true);
-    }
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+        console.log("the loggin value is sored is",storedIsLoggedIn)
+        if (storedIsLoggedIn === 'true') {
+            setIsLoggedIn(true);
+        }
+        
+        const storedEmail = localStorage.getItem('loggedInUserEmail');
+        console.log("the actual email stored is from ap.js",storedEmail )
+        if (storedEmail) {
+            setLoggedInUserEmail(storedEmail);
+        }
 
     if (storedProfileImageUrl) {
       console.log("store profile imageurl is jfhr3giutghibygiuth4g", localStorage.getItem('profileImageUrl'));
@@ -89,10 +98,10 @@ const App = () => {
               <li className="Login">
                 {isLoggedIn ? (
                   <div className="profile-link">
-
                     <img
-                      className='picture'
-                      src={`http://localhost:3001/uploads/${localStorage.getItem('profileImageUrl')}`}
+                      className='picture'src={`http://localhost:3001/ob_travel/uploads/${localStorage.getItem('profileImageUrl')}`}
+
+                  
                       alt="Profile"
                     />
                   </div>
@@ -100,6 +109,9 @@ const App = () => {
                   // <Link to="/login">Login</Link>
                   <p></p>
                 )}
+              </li>
+              <li className="my-blogs">
+                <Link to="/demoimg"><span>demoimg</span></Link>
               </li>
             </ul>
           </nav>
@@ -118,6 +130,7 @@ const App = () => {
             <Route path="/login/*" element={<LoginForm setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/create/*" element={<Create />} />
             <Route path="/my-blogs/*" element={<MyBlogs />} />
+            <Route path="/demoimg/*" element={<Demoimg />} />
           </Routes>
         </div>
       </div>

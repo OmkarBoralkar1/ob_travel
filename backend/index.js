@@ -6,10 +6,11 @@ const multer = require('multer');
 const signupModel = require('./models/signup.js');
 const createmodel = require('./models/create.js');
 const path = require('path');
+const { error } = require('console');
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use('/uploads', express.static(path.join(__dirname, 'frontend', 'uploads')));
+app.use('../uploads', express.static(path.join(__dirname , '/uploads')));
 const PORT = 3001;
 
 mongoose.connect('mongodb://127.0.0.1:27017/travel', {
@@ -25,7 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/travel', {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../frontend/uploads/'); // This path might be problematic
+    cb(null, '../uploads/'); // This path might be problematic
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
@@ -141,12 +142,12 @@ app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), 
       title,
       sub_title,
       Description,
-      img_fileUrl: newImageFile.path,
-      pdf_fileUrl: newPdfFile.path,
+      img_fileUrl: newImageFile.name, // Store the image file by name
+      pdf_fileUrl: newPdfFile.name,   // Store the PDF file by name
       user: {
         name: loggedInUser.name,
         email: loggedInUser.email,
-        file: loggedInUser.filename,
+        file: loggedInUser.fileUrl.filename,
       },
     });
 
@@ -156,6 +157,12 @@ app.post('/create', uploads.fields([{ name: 'imgFile' }, { name: 'pdfFile' }]), 
     console.error('Error creating blog:', err);
     res.status(500).send('Error creating blog.');
   }
+});
+app.get('/popularblogs', async (req, res) => {
+  createmodel.find()
+  .then(users => res.json(users))
+  .catch(err =>res.json(err))
+ 
 });
 
 
