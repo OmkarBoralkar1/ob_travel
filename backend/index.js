@@ -165,6 +165,30 @@ app.get('/popularblogs', async (req, res) => {
  
 });
 
+app.post('/userblogs', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await signupModel.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Fetch blogs from the create model for the logged-in user
+    const userBlogs = await createmodel.find({ 'user.email': email });
+
+    res.status(200).json(userBlogs);
+  } catch (error) {
+    console.error('Error fetching user blogs:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

@@ -93,7 +93,7 @@ const App = () => {
                 <Link to="/create"><span>Create-blogs</span></Link>
               </li>
               <li className="my-blogs">
-                <Link to="/my-blogs"><span>My-blogs</span></Link>
+              <Link to="/my-blogs/"><span>My-Blogs</span></Link>
               </li>
               <li className="Login">
                 {isLoggedIn ? (
@@ -129,7 +129,7 @@ const App = () => {
             <Route path="/signup/*" element={<SignupForm />} />
             <Route path="/login/*" element={<LoginForm setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/create/*" element={<Create />} />
-            <Route path="/my-blogs/*" element={<MyBlogs />} />
+            <Route path="/my-blogs/" element={<MyBlogs />} />
             <Route path="/demoimg/*" element={<Demoimg />} />
           </Routes>
         </div>
