@@ -22,11 +22,13 @@ export default function MyBlogs() {
   }, []);
 
   const fetchUserBlogs = async (email) => {
+    console.log('the email value is',email)
     try {
       const response = await fetch('http://localhost:3001/userblogs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          
         },
         body: JSON.stringify({ email }),
       });

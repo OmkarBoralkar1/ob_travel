@@ -2,7 +2,7 @@
 .home-body {
   background-size: 1000vw 1000vh;
   background-repeat: no-repeat;
-  animation: changeColor 40s infinite;
+  /* animation: changeColor 40s infinite; */
   
   top: 50%;
   margin-top: 220px;
@@ -16,14 +16,16 @@
   margin: 10px; /* Add negative margin to counteract margin of content boxes */
 }
 
+
 .home-content {
+  border-radius: 20px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
   width: 30%; /* Adjust width and margin to control spacing */
   margin: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: transparent;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   padding: 10px;
   text-align: center;
@@ -40,6 +42,7 @@
   height: 300px; /* Set a fixed height */
   object-fit: cover;
   padding: 2px;
+  border-radius: 30px;
  
 
 }
@@ -84,19 +87,20 @@
   object-fit: cover;
   background: linear-gradient(to bottom, #ffffff, #f0f0f0);
   
-
+  
 }
 .image-animation {
+ 
   animation: slideImages 30s infinite;
   width: 200%;
   height: 500px;
- 
   display: flex;
   overflow: hidden;
   
 }
 
 .home-animation-image {
+  border-radius: 100px;
   width: 100%;
   height: 100%;
   margin: 10px;

@@ -14,12 +14,12 @@ import axios from 'axios';
 export default function Home() {
   const [popularBlogs, setPopularBlogs] = useState([]);
   const [error, setError] = useState(null);
-  useEffect(()=>{
+  useEffect(() => {
     axios.get('http://localhost:3001/popularblogs')
-    .then(popularBlogs => setPopularBlogs(popularBlogs.data))
-    .catch(err => console.log(err))
-  },[])
-  
+      .then(popularBlogs => setPopularBlogs(popularBlogs.data))
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <div>
       <div className={homeStyles['home-body']}>
@@ -117,30 +117,33 @@ export default function Home() {
               <h1>This is the nice place of the Brazil</h1>
             </Link>
           </div>
-          </div>
-         
-          <h1> Blogs from the database</h1>
-        <div className={homeStyles['home-row']}>
-            {error ? (
-              <p>Error fetching popular blogs. Please try again later.</p>
-            ) : (
-              <div className={homeStyles['home-body']}>
-                {/* Your other content here */}
-                {popularBlogs.map((blog) => (
-                  <div className={homeStyles['home-content']} key={blog._id}>
-                    <Link className={homeStyles['home-content-link']} to={`/details/${blog._id}`}>
-                      <img className={homeStyles['home-image']} src={blog.img_fileUrl} alt="image" />
-                      <h1>{blog.title}</h1>
-                      <p>Place: {blog.Continent}</p>
-                      <p>Country: {blog.Country}</p>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
-      </div>
+        <div>
+        <h1> Blogs from the database</h1>
+        {error ? (
+          <p>Error fetching popular blogs. Please try again later.</p>
+        ) : (
+
+          <div className={homeStyles['home-row']}>
+            {/* Your other content here */}
+            {popularBlogs.map((blog) => (
+              <div className={homeStyles['home-content']} key={blog._id}>
+                <Link className={homeStyles['home-content-link']} to={`/details/${blog._id}`}>
+                  <img className={homeStyles['home-image']} src={blog.img_fileUrl} alt="image" />
+                  <h1>{blog.title}</h1>
+                  <p>Place: {blog.Continent}</p>
+                  <p>Country: {blog.Country}</p>
+                </Link>
+              </div>
+            ))}
+          </div> 
+          )}
       
-      );
+
+        </div>
+      
+    </div>
+  </div>
+
+  );
 }
