@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
 
 const signupschema = new mongoose.Schema({
-  name: String,
+  username: String,
   email: String,
   password: String,
-  contactNumber: String,
-  fileUrl: String, // This field will store the URL of the uploaded file
+  confirmpassword: String,
 });
-
-const signupmodel = mongoose.model('travel', signupschema);
+const signupmodel = mongoose.model('signup', signupschema);
 module.exports = signupmodel;

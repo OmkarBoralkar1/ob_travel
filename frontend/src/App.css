@@ -1,98 +1,38 @@
-/* Reset default styles for ul */
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex; /* Use flexbox to align items horizontally */
-  align-items: center; /* Center items vertically within the flex container */
-  justify-content: center; /* Center items horizontally within the flex container */
-}
-
-/* Style the header */
-.header {
-  background-color: #5f5f5f;
-  color: #fff;
-  padding: 1rem;
+.App {
   text-align: center;
-  position: fixed;
-  top: 0%;
-  width: 100%;
-  z-index: 10;
 }
 
-/* Style the navigation links */
-.header nav ul li {
-  margin: 16px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.header nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.header nav ul li a:hover {
-  color: #ddd;
-}
-
-/* Add these styles to your App.css */
-.search-bar {
-  width: 250px;
-  position: relative; /* Required for positioning the icon */
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  border-radius: 25px;
-  transform: translateY(-50%);
-  right: 30px; /* Adjust the position as needed */
-  color: #333;
-}
-.search-bar input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  outline: none;
-}
-.picture{
-  width: 100px;
-  height: 100px;
-  float: right;
-  border-radius: 5px;
-}
-@media (max-width: 768px) {
-  .header nav ul li {
-    margin: 1px; /* Adjust spacing for smaller screens */
-    width: 200%;
-    margin: 5px;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
   }
+}
 
-  .search-bar {
-    width: 450%; /* Full width on mobile */
-    margin: 10px 0; /* Adjust margin for spacing */
-  }
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
-  .search-icon {
-    right: 25px; /* Adjust the position as needed */
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  .header nav ul li.create-blogs a span,
-  .header nav ul li.my-blogs a span {
-    display: none;
-    
-  }
-  
-  /* Display icons for "Create-blogs" and "My-blogs" links */
-  .header nav ul li.create-blogs a::before
-  {
-    content: "+"; /* Unicode code for the desired icon (e.g., a Unicode icon) */
-    font-family: "Font Awesome"; /* Replace with the appropriate font family */
-    margin-right: 8px;
-  }
-  .header nav ul li.my-blogs a::before {
-    content: "-"; /* Unicode code for the desired icon (e.g., a Unicode icon) */
-    font-family: "Font Awesome"; /* Replace with the appropriate font family */
-    margin-right: 8px; /* Adjust spacing between symbol and text */
+  to {
+    transform: rotate(360deg);
   }
 }
