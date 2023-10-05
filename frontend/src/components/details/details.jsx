@@ -76,8 +76,8 @@ function Details() {
                                                 <textarea
                                                     className={DetailStyles['Detail-contents']}
                                                     value={userblog.content}
-                                                    rows="8" // You can adjust the number of rows as needed
-                                                    cols="50" // You can adjust the number of columns as needed
+                                                    rows="10" // You can adjust the number of rows as needed
+                                                    cols="70" // You can adjust the number of columns as needed
                                                     style={{ resize: 'both' }} // Allow both vertical and horizontal resizing
                                                     readOnly // Make it read-only if needed
                                                 />

@@ -213,7 +213,7 @@ select {
         padding: 5px;
     }
     .destination-image {
-        width: 100%;
+        width: 100vw;
         height: 250px; /* Adjust the height as needed for smaller screens */
     }
     .destination-pictures {

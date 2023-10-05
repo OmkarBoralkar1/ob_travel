@@ -157,14 +157,17 @@
 }
 
 .Detail-content h1 {
+    width: 90vw;
     margin-top: 0.5rem;
     margin-bottom: 0;
     margin-left: 1vw;
     font-size: 9vh;
+    font-family: 'Urbanist', sans-serif;
     
 }
 .Detail-content textarea {
     display: flex;
+    font-family: 'Urbanist', sans-serif;
     justify-content: space-between;
     margin-left: 1vw;
     font-family: 'Urbanist', sans-serif;
@@ -174,7 +177,7 @@
     padding-left: 1vw;
     width: auto;
     height: auto;
-    font-size: 3vw;
+    font-size: 2.5vw;
     margin-top: 3vh;
     margin-bottom: 0;
     color: #000;
@@ -200,7 +203,7 @@
   
   .Detail-place {
     width: 10vw;
-    
+    font-family: 'Urbanist', sans-serif;
  /* Adjust the left margin as needed */
   /* Add padding to create space between the date and the separator */
   font-size:3vw;
@@ -209,6 +212,7 @@
   }
   
    .Detail-date  { 
+    font-family: 'Urbanist', sans-serif;
     width: 120vw;
     font-size:3vw;
     margin-right:25vw;

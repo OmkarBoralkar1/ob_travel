@@ -82,7 +82,7 @@ export default function Stories() {
         }
     
         const lines = content.split('\n'); // Split the content by line breaks
-        const truncatedContent = lines.slice(0, 2).join('\n'); // Get the first two lines and join them
+        const truncatedContent = lines.slice(0,1).join('\n'); // Get the first two lines and join them
         return truncatedContent;
     }
 

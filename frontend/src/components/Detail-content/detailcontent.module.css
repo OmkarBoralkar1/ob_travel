@@ -101,13 +101,14 @@ body {
 .detailcontent-content {
     width: 100vw;
     
-    padding: 10% 5%;
+    padding: 5% 0.5%;
     align-items: center;
 }
 .detailcontent-blogcontent{
     font-size: 1.8vw;
     width: 200vh;
     height: auto;
+    resize: 'both';
     overflow: scroll;
     border-top: transparent;
     border-right: transparent;

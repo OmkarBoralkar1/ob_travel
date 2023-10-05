@@ -278,10 +278,10 @@ const Detailscontent = () => {
                                 onChange={(e) => setNewContent(e.target.value)}
                                 disabled={contentDisabled}
                                 required
-                                rows="10"  // You can adjust the number of rows as needed
-                                cols="50" // You can adjust the number of columns as needed
+                                rows="8"  // You can adjust the number of rows as needed
+                                cols="40" // You can adjust the number of columns as needed
                                  // Allow vertical resizing
-                            />
+                            /><br></br>
                             <Link
                                 onClick={handleEditContent}
                                 className={styles['detailcontent-edit-button']}
