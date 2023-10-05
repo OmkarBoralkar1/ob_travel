@@ -87,8 +87,8 @@
 }
 
 .destination-image {
-    width: 100%; /* Set a fixed width */
-    height: 300px; /* Set a fixed height */
+    width: 30vw; /* Set a fixed width */
+    height: 40vh; /* Set a fixed height */
     object-fit: cover;
     padding: 2px;
     border-radius: 30px;
