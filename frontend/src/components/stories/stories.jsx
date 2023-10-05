@@ -77,6 +77,10 @@ export default function Stories() {
         setSelectedDate(''); // Reset selected date when the continent selection changes
     };
     function truncateContent(content) {
+        if (typeof content !== 'string') {
+            return ''; // Handle the case when 'content' is not a string
+        }
+    
         const lines = content.split('\n'); // Split the content by line breaks
         const truncatedContent = lines.slice(0, 2).join('\n'); // Get the first two lines and join them
         return truncatedContent;
@@ -97,60 +101,60 @@ export default function Stories() {
                 <p className={storiesStyles['stories-storysubheading']}>Explore our latest stories from our active users</p>
                 <div className={storiesStyles['stories-row']}>
 
-
-
-
-
-
-
-
-
-                <div>
-
                     <div>
 
-                        {error ? (
-                            <p>Error fetching popular blogs. Please try again later.</p>
+                        <div>
+
+                            {error ? (
+                                <p>Error fetching popular blogs. Please try again later.</p>
                             ) : (
-                                
+
                                 <div className={storiesStyles['stories-row']}>
 
-                                {currentBlogs.map((blog) => (
-                                    <div className={storiesStyles['stories-content']}>
-                                        <Link className={storiesStyles['stories-content-link']} to="/details">
-                                            <img className={storiesStyles['stories-image']} src={`http://localhost:3001/profileimg/${blog.blogimg}`} alt="Travel" />
-                                            <div className={storiesStyles['stories-details']}>
-                                                <h5>
-                                                    <span className={storiesStyles['stories-place']}>{blog.location}</span>
-                                                    <span className={storiesStyles['stories-date']}>{blog.date}</span>
-                                                </h5>
-                                            </div>
-                                            <h1>{blog.title}</h1>
-                                            <h6 className={storiesStyles['stories-content']}>{truncateContent(blog.content)}</h6>
-                                        </Link>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-
-
-                    </div>
-                    <div className={storiesStyles['pagination']}>
-                        <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-                            Previous Page
-                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>Page {currentPage} of {totalPages}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
-                            Next Page
-                        </button>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-
-                        
+                                    {currentBlogs.map((blog) => (
+                                        <div className={storiesStyles['stories-content']}>
+                                            <Link className={storiesStyles['stories-content-link']} to={`/details/${blog._id}`}>
+                                                <img className={storiesStyles['stories-image']} src={`http://localhost:3001/profileimg/${blog.blogimg}`} alt="Travel" />
+                                                <div className={storiesStyles['stories-details']}>
+                                                    <h5>
+                                                        <span className={storiesStyles['stories-place']}>{blog.location}</span>
+                                                        <span className={storiesStyles['stories-date']}>{blog.date}</span>
+                                                    </h5>
+                                                </div>
+                                                <h1>{blog.title}</h1>
+                                                <h6 className={storiesStyles['stories-content']}>{truncateContent(blog.content)}</h6>
+                                            </Link>
                                         </div>
+                                    ))}
+                                </div>
+                            )}
+
+
+                        </div>
+                        <div className={storiesStyles['pagination']}>
+                            <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+                                Previous Page
+                            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>Page {currentPage} of {totalPages}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
+                                Next Page
+                            </button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
     );
 }
+
+
+
+
+
+
+
+

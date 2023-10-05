@@ -335,14 +335,79 @@ app.get('/popularblogs', async (req, res) => {
     // Fetch popular blogs based on your desired criteria
     const popularBlogs = await createblogmodel.find()
     console.log('the popular blogs are',popularBlogs)
-     
-
     res.status(200).json({ popularBlogs });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+app.get('/blogdetail/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("the blogid is", id);
+
+    // Check if the user exists
+    const userblog = await createblogmodel.findOne({ _id: id }); // Use _id instead of id
+    console.log('the userblog is', userblog);
+    // res.status(200).json({ userblog: JSON.stringify(userblog) });
+    res.status(200).json({ userblog });
+    if (!userblog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.get('/detailcontentimg/:id',async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("the blogid detail content is", id);
+    const { username, newTitle,newLocation,newDate,newContent } = req.body;
+
+    // Check if the user exists
+    const userblog = await createblogmodel.findOne({ _id: id }); // Use _id instead of id
+    console.log('the userblog for the detail content is', userblog);
+    // res.status(200).json({ userblog: JSON.stringify(userblog) });
+    res.status(200).json({ userblog });
+    if (!userblog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+app.post('/detailcontent/:id',async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("the blogid detail content  to chnge is", id);
+    const { username, newTitle,newLocation,newDate,newContent } = req.body;
+
+    // Check if the user exists
+    const userblog = await createblogmodel.findOne({ _id: id }); // Use _id instead of id
+    console.log('the userblog for the detail content to change is', userblog);
+    // res.status(200).json({ userblog: JSON.stringify(userblog) });
+    res.status(200).json({ userblog });
+    if (!userblog) {
+      return res.status(404).json({ message: 'Blog not found' });
+    }
+    userblog.title = newTitle;
+    await userblog.save();
+    userblog.location = newLocation;
+    await userblog.save();
+    userblog.date = newDate;
+    await userblog.save();
+    userblog.content = newContent;
+    await userblog.save();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.listen(PORT1, () => console.log(`Server listening to port ${PORT1}`));
 
 

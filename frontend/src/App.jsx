@@ -19,7 +19,8 @@ import Destination from 'components/Destination/destination';
 import Stories from 'components/stories/stories';
 import Create from 'components/create-blog1/create-blog1';
 import Profileimg from 'components/profileimg/profileimg';
-
+import Details from 'components/details/details';
+import Detailscontent from 'components/Detail-content/detailcontent';
 const App = () => {
 
 
@@ -38,6 +39,8 @@ const App = () => {
             <Route path="/stories/*" element={<Stories />} />
             <Route path="/profileimg/*" element={<Profileimg />} />
             <Route path="/profile/*" element={<Profile />} />
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/details-content/:id" element={<Detailscontent />} />
           </Routes>
         </div>
     

@@ -1,12 +1,13 @@
-/* stories.module.css */
+/* Detail.module.css */
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
-.stories-body {
+.Detail-body {
     background-size: 1000vw 1000vh;
     top: 5%;
     font-family: 'Urbanist', sans-serif;
+    width: 100vh;
 }
 
-.stories-upperbody {
+.Detail-upperbody {
     flex-shrink: 0;
     object-fit: cover;
     overflow: hidden;
@@ -64,28 +65,28 @@
         background-image: url('../../images/bora-bora-island.jpg');
     }
 }
-.stories-cote {
+.Detail-cote {
     margin-top: 10%;
     color: #FFF;
     text-align: center;
-    font-size: 80px;
+    font-size: 5vw;
     font-style: normal;
     width: 1100px;
     font-weight: 800;
     line-height: normal;
 }
 
-.stories-detailssearch {
+.Detail-detailssearch {
     margin-left: 10%;
 }
 
-.stories-search-bar {
+.Detail-search-bar {
     margin-top: 5%;
     width: 350px;
     position: relative;
 }
 
-.stories-search-bar input {
+.Detail-search-bar input {
     width: 180%;
     height: 50px;
     padding: 8px;
@@ -96,7 +97,7 @@
     padding-left: 33px;
 }
 
-.stories-search-icon {
+.Detail-search-icon {
     position: absolute;
     top: 50%;
     left: 570px; /* Use 'left' instead of 'margin-left' */
@@ -107,7 +108,7 @@
     transform: translateY(-50%);
 }
 
-.stories-row {
+.Detail-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -115,13 +116,13 @@
     margin: 10px; /* Add negative margin to counteract margin of content boxes */
 }
 
-.stories-content {
+.Detail-content {
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
-    width: 39.5vw; /* Adjust width and margin to control spacing */
+    width: 40vw; /* Adjust width and margin to control spacing */
     margin:2vw;
     background-color: transparent;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -129,50 +130,58 @@
    
 }
 
-.stories-content-link {
+.Detail-content-link {
     text-decoration: none;
     color: inherit;
 }
-.stories-storyheading{
+.Detail-storyheading{
     margin-top: 15vh;
     margin-left: 10vh;
     font-size: 4vh;
 }
-.stories-storysubheading{
+.Detail-storysubheading{
 
     margin-left: 10vh;
     font-size: 3vh;
 }
-.stories-image {
+.Detail-image {
+    margin-left: 6vw;
     flex-shrink: 0;
-    width: 35vw; /* Set a fixed width */
-    height: 50vh; /* Set a fixed height */
+    width: 75vw; /* Set a fixed width */
+    height: 100vh; /* Set a fixed height */
+    align-items: center;
     object-fit: cover;
     overflow: hidden;
     padding: 2px;
     border-radius: 3vh;
 }
 
-.stories-content h1 {
+.Detail-content h1 {
     margin-top: 0.5rem;
     margin-bottom: 0;
     margin-left: 1vw;
-    font-size: 24px;
+    font-size: 9vh;
     
 }
-.stories-content h6 {
+.Detail-content textarea {
+    display: flex;
     justify-content: space-between;
     margin-left: 1vw;
     font-family: 'Urbanist', sans-serif;
     font-weight: 600;
     line-height: normal;
-    font-size: 2.3vh;
+    border-radius: 3vh;
+    padding-left: 1vw;
+    width: auto;
+    height: auto;
+    font-size: 3vw;
     margin-top: 3vh;
     margin-bottom: 0;
     color: #000;
+    flex-wrap: wrap; /* Allow content to wrap to the next line */
 }
 
-.stories-pictures {
+.Detail-pictures {
     width: 270%;
     height: 500px;
     margin: 10px;
@@ -181,25 +190,29 @@
     object-fit: cover;
     background: linear-gradient(to bottom, #ffffff, #f0f0f0);
 }
-.stories-details {
+.Detail-details {
   
-    display: inline-block;
+   
     display: flex;
   justify-content: space-between;
- 
-    font-family: 'Urbanist', sans-serif;
+ font-family: 'Urbanist', sans-serif;
   }
   
-  .stories-place {
+  .Detail-place {
+    width: 10vw;
+    
  /* Adjust the left margin as needed */
   /* Add padding to create space between the date and the separator */
+  font-size:3vw;
   /* Add a left border to act as a separator */
   font-family: 'Urbanist', sans-serif;
   }
   
-   .stories-date  { 
-    
-   padding-left: 15vw; /* Add padding to create space between the date and the separator */
+   .Detail-date  { 
+    width: 120vw;
+    font-size:3vw;
+    margin-right:25vw;
+    /* Add padding to create space between the date and the separator */
   /* Add a left border to act as a separator */
   font-family: 'Urbanist', sans-serif;
   }
@@ -233,7 +246,7 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
-  .stories-detailselect{
+  .Detail-detailselect{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -241,7 +254,7 @@
     margin-right: 50vw;
     margin-left: 5vw;
   }
-  .stories-select-bar {
+  .Detail-select-bar {
     /* align-items: center;
     background-color: white;
     margin-top: 1vw;
@@ -284,40 +297,69 @@
     transition: background-color 0.3s;
   }
  
-@media (max-width: 780px) {
-   
-    .stories-body {
+ 
+  @media (max-width: 780px) {
+    .Detail-body {
         background-attachment: fixed;
         background-color: white;
     }
-    .stories-upperbody {
+    .Detail-upperbody {
         background-image: url('../../images/mountain celebration.jpeg');
-        background-size: cover; /* Ensure the image covers the entire container */
+        background-size: cover;
         width: 100vw;
-        height: 50vh; /* Adjust the height as needed for smaller screens */
-      }
-    .stories-row {
-        margin: 5px; /* Adjust margin for smaller screens */
+        height: 50vh;
+    }
+    .Detail-row {
+        margin: 5px;
         background-attachment: fixed;
         object-fit: cover;
         width: 100%;
     }
-    .stories-content {
-        width: 100%; /* Full width on mobile */
+    .Detail-content {
+        width: 100%;
         margin: 5px;
         padding: 5px;
     }
-    .stories-image {
-        width: 100%;
-        height: 250px; /* Adjust the height as needed for smaller screens */
+    .Detail-image {
+        margin-left: 0;
+        width: 30vh;
+        height: 150vh;
+        height: auto; /* Adjust the height to maintain aspect ratio */
     }
-    .stories-pictures {
-        width: 300%;
-        height: 300px;
+    .Detail-pictures {
+        width: 95vw;
+        height: auto; /* Adjust the height to maintain aspect ratio */
         object-fit: cover;
         display: flex;
         flex-wrap: wrap;
         margin: 10px;
     }
-   
+    .Detail-content h1 {
+        font-size: 15vw; /* Adjust font size for smaller screens */
+    }
+    .Detail-content h6 {
+        font-size: 5vh; /* Adjust font size for smaller screens */
+    }
+    .Detail-place {
+        width: auto; /* Allow the content to flow naturally */
+        font-size: 10vw; /* Adjust font size for smaller screens */
+    }
+    .Detail-date {
+        width: auto; /* Allow the content to flow naturally */
+        font-size: 10vw; /* Adjust font size for smaller screens */
+        margin-right: 0; /* Remove the right margin */
+    }
+    .pagination button {
+        padding: 6px 12px; /* Adjust padding for smaller buttons */
+        height: auto; /* Adjust button height for smaller screens */
+        font-size: 2vw; /* Adjust font size for smaller screens */
+    }
+    select {
+        width: 100%; /* Full width for select box */
+        font-size: 2vw; /* Adjust font size for smaller screens */
+    }
+    .detailcontent-links-container {
+        width: 100%; /* Full width for smaller screens */
+        font-size: 2vw; /* Adjust font size for smaller screens */
+    }
 }

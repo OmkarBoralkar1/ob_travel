@@ -28,7 +28,7 @@ export default function Destination() {
     const [error, setError] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [blogsPerPage] = useState(9);
+    const [blogsPerPage] = useState(12);
     const [totalPages, setTotalPages] = useState(2);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectplace, setSelectplace] = useState('');
