@@ -9,18 +9,18 @@ import './App.css';
 // import Demoimg from './demoimg/demoimg';
 // import { AiOutlineSearch } from "react-icons/ai";
 // import axios from 'axios';
-import SignupForm from 'components/signup/Signup';
-import LoginForm from 'components/login/Login';
-import ForgotpasswordForm from 'components/forgotpassword/forgotpassword';
-import ResetpasswordForm from 'components/forgotpassword/resetpassword';
-import MyBlogs from 'components/my-blogs/my-blogs';
-import Profile from 'components/profile/profile';
-import Destination from 'components/Destination/destination';
-import Stories from 'components/stories/stories';
-import Create from 'components/create-blog1/create-blog1';
-import Profileimg from 'components/profileimg/profileimg';
-import Details from 'components/details/details';
-import Detailscontent from 'components/Detail-content/detailcontent';
+import SignupForm from 'pages/signup/Signup';
+import LoginForm from 'pages/login/Login';
+import ForgotpasswordForm from 'pages/forgotpassword/forgotpassword';
+import ResetpasswordForm from 'pages/forgotpassword/resetpassword';
+import MyBlogs from 'pages/my-blogs/my-blogs';
+import Profile from 'pages/profile/profile';
+import Destination from 'pages/Destination/destination';
+import Stories from 'pages/stories/stories';
+import Create from 'components/create-blog/create-blog';
+import Profileimg from 'pages/profileimg/profileimg';
+import Details from 'pages/details/details';
+import Detailscontent from 'pages/Detail-content/detailcontent';
 const App = () => {
 
 
