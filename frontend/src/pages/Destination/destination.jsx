@@ -40,7 +40,7 @@ export default function Destination() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/popularblogs`);
+                const response = await axios.get(`http://localhost:5000/blog/popularblogs`);
 
                 if (response.status === 200) {
                     console.log('blogs data are:', response.data); // Log the response data
@@ -153,7 +153,7 @@ export default function Destination() {
                                 {currentBlogs.map((blog) => (
                                     <div className={destinationStyles['destination-content']} key={blog._id}>
                                         <Link className={destinationStyles['destination-content-link']} to={`/details/${blog._id}`}>
-                                            <img className={destinationStyles['destination-image']} src={`http://localhost:3001/profileimg/${blog.blogimg}`} alt="blogs" />
+                                            <img className={destinationStyles['destination-image']} src={`http://localhost:5000/blogimg/${blog.blogimg}`} alt="blogs" />
 
                                             <h1>{blog.location}</h1>
 

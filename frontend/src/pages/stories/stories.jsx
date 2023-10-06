@@ -37,7 +37,7 @@ export default function Stories() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/popularblogs`);
+                const response = await axios.get(`http://localhost:5000/blog/popularblogs`);
 
                 if (response.status === 200) {
                     console.log('blogs data are:', response.data); // Log the response data
@@ -82,7 +82,7 @@ export default function Stories() {
         }
     
         const lines = content.split('\n'); // Split the content by line breaks
-        const truncatedContent = lines.slice(0,1).join('\n'); // Get the first two lines and join them
+        const truncatedContent = lines.slice(0,2).join('\n'); // Get the first two lines and join them
         return truncatedContent;
     }
 
@@ -114,7 +114,7 @@ export default function Stories() {
                                     {currentBlogs.map((blog) => (
                                         <div className={storiesStyles['stories-content']}>
                                             <Link className={storiesStyles['stories-content-link']} to={`/details/${blog._id}`}>
-                                                <img className={storiesStyles['stories-image']} src={`http://localhost:3001/profileimg/${blog.blogimg}`} alt="Travel" />
+                                                <img className={storiesStyles['stories-image']} src={`http://localhost:5000/blogimg/${blog.blogimg}`} alt="Travel" />
                                                 <div className={storiesStyles['stories-details']}>
                                                     <h5>
                                                         <span className={storiesStyles['stories-place']}>{blog.location}</span>

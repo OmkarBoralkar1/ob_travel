@@ -18,16 +18,16 @@ img{
     height: 100vh;
 }
 
-h1{
+.h1{
     margin: 0;
     margin-bottom: 2vw;
-    color: white;
+    color: rgb(119, 117, 117);
 }
 
 .formBox{
     background-color: white;
     width: 60vw;
-    height: 70vh;
+    height: 150vh;
     padding: 3vw;
     margin: auto;
     border: 1px solid black;
@@ -59,7 +59,9 @@ button{
     height: 7vh;
     font-size: 1.5vw;
 }
-
+button:hover{
+    background-color: bisque;
+}
 
 
 /* Media Query for smaller screens */

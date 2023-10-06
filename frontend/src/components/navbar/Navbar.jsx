@@ -59,7 +59,7 @@ const Navbar = () => {
   const fetchUserProfileimg = async (storedEmail) => {
     setIsLoading(true);
     try {
-      const responseimg = await axios.get(`http://localhost:3001/getprofileimg/${storedEmail}`);
+      const responseimg = await axios.get(`http://localhost:5000/user/getprofileimg/${storedEmail}`);
       console.log('API Response Data:', responseimg.data);
 
       if (responseimg.status === 200) {
@@ -120,7 +120,7 @@ const Navbar = () => {
                   <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
                     <div className={styles['profile-content']}>
                       <span className={styles['profile-content-name']}>Profile</span>
-                      <img className={styles['profile-image']} src={`http://localhost:3001/profileimg/${profileimg.image}`} alt="Profileimg" />
+                      <img className={styles['profile-image']}  src={`http://localhost:5000/profileimg/${profileimg.image}`} alt="Profileimg" />
                     </div>
                   </Link>
                 </li>

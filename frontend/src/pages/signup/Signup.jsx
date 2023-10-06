@@ -26,7 +26,7 @@ const SignupForm = () => {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('confirmpassword', confirmpassword);
-      const response = await axios.post('http://localhost:3001/register', formData, {
+      const response = await axios.post('http://localhost:5000/user/register', formData, {
         headers: {
           'Content-Type': 'application/json',
         }
@@ -42,8 +42,11 @@ const SignupForm = () => {
       }
     } catch (error) {
       console.error('Error:', error);
-      if (error.response && error.response.status === 400) {
-        alert('Password and Confirm Password do not match');
+      if ( error.response.status === 400) {
+        alert('You cannot assign the username please assign the new username');
+      } 
+      if ( error.response.status === 401) {
+        alert('Password and confirmpassword status do not match');
       } else {
         alert('Error connecting to the server. Please try again later.' + error.message);
       }

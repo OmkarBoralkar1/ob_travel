@@ -28,7 +28,7 @@ body {
     font-weight: 800;
 }
 .nav-container-previous{
-    margin-left: 20000vw;
+    margin-left: 2vw;
 }
 /* Centered navigation items */
 .nav-container-previous,
@@ -106,7 +106,7 @@ body {
 
 .right-aligned {
     
-    margin-left: 18vw;
+    margin-left: 13vw;
     margin-right: 1vh; /* Adjust spacing between Signup and Login */
 }
 

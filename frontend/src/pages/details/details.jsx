@@ -15,7 +15,7 @@ function Details() {
     useEffect(() => {
         const fetchBlogDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/blogdetail/${id}`);
+                const response = await axios.get(`http://localhost:5000/blog/blogdetail/${id}`);
 
                 console.log(response);
 
@@ -65,7 +65,7 @@ function Details() {
                                         <div className={DetailStyles['Detail-content']}>
                                             <p className={DetailStyles['Detail-storysubheading']}> blog ID : {id}</p>
                                             <Link className={DetailStyles['Detail-content-link']} to={`/details-content/${userblog._id}`}>
-                                                <img className={DetailStyles['Detail-image']} src={`http://localhost:3001/profileimg/${userblog.blogimg}`} alt="Travel" />
+                                                <img className={DetailStyles['Detail-image']} src={`http://localhost:5000/blogimg/${userblog.blogimg}`} alt="Travel" />
                                                 <div className={DetailStyles['Detail-details']}>
 
                                                     <h5 className={DetailStyles['Detail-place']}>{userblog.location}</h5>

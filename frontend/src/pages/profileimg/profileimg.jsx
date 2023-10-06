@@ -32,7 +32,7 @@ function Profileimg() {
   const fetchUserProfile = async (storedEmail) => {
     setIsLoading(true); // Set loading state to true
     try {
-      const response = await axios.get(`http://localhost:3001/getprofile/${storedEmail}`);
+      const response = await axios.get(`http://localhost:5000/user/getprofile/${storedEmail}`);
       
 
       if (response.status === 200) {
@@ -50,7 +50,7 @@ function Profileimg() {
   const fetchUserProfileimg = async (storedEmail) => {
     setIsLoading(true);
     try {
-      const responseimg = await axios.get(`http://localhost:3001/getprofileimg/${storedEmail}`);
+      const responseimg = await axios.get(`http://localhost:5000/user/getprofileimg/${storedEmail}`);
 console.log('API Response Data:', responseimg.data);
   
       if (responseimg.status === 200) {
@@ -80,7 +80,7 @@ console.log('API Response Data:', responseimg.data);
     formData.append('selectedFile', selectedFile);
 
     try {
-      const response = await axios.post('http://localhost:3001/upload', formData);
+      const response = await axios.post('http://localhost:5000/user/upload', formData);
       console.log(response.data);
 
       // If the upload was successful, set a success message and navigate to the profile
@@ -107,7 +107,7 @@ console.log('API Response Data:', responseimg.data);
       ) : (
         <>
           {error && <p className="error">{error}</p>}
-          <img src={`http://localhost:3001/profileimg/${profileimg.image}`} alt="Profileimg" />
+          <img src={`http://localhost:5000/profileimg/${profileimg.image}`} alt="Profileimg" />
           <br></br><br></br>
           <input type="file" accept="image/*" onChange={handleFileSelect} />
           <button onClick={handleImageUpload}>Upload Profile Image</button>

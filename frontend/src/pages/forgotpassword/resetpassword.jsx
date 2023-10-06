@@ -29,7 +29,7 @@ const ResetpasswordForm = () => {
         setErrors(validationErrors);
       } else {
         try {
-          const response = await axios.post('http://localhost:3001/resetpassword', {
+          const response = await axios.post('http://localhost:5000/user/resetpassword', {
             username,newpassword,confirmnewpassword
           });
           console.log('forgotpassword Response:', response);

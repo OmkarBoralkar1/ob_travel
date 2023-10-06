@@ -10,6 +10,9 @@ export default function Create() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [selectedDate, setSelectedDate] = useState('');
     const [imgFile, setImgFile] = useState(null);
+    const [loggedInUserEmail, setLoggedInUserEmail] = useState('');
+    const [profile, setProfile] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     // const [loggedInUserEmail, setLoggedInUserEmail] = useState("");
 
 
@@ -23,32 +26,55 @@ export default function Create() {
         setImgFile(e.target.files[0]);
     };
 
-    // useEffect(() => {
-    //   const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    //   console.log(storedIsLoggedIn);
-    //   if (storedIsLoggedIn === "true") {
-    //     setIsLoggedIn(true);
-    //     const storedEmail = localStorage.getItem("loggedInUserEmail");
-    //     console.log(storedEmail);
-    //     if (storedEmail) {
-    //       setLoggedInUserEmail(storedEmail);
-    //     }
-    //   }
-    // }, []);
-
+    useEffect(() => {
+        const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+        console.log(storedIsLoggedIn)
+        if (storedIsLoggedIn === 'true') {
+          setIsLoggedIn(true);
+          const storedEmail = localStorage.getItem('loggedInUserEmail');
+          console.log(storedEmail)
+          if (storedEmail) {
+            setLoggedInUserEmail(storedEmail);
+            fetchUserProfile(storedEmail);
+           
+          }
+        }
+      }, []);
+    
+      const fetchUserProfile = async (storedEmail) => {
+        setIsLoading(true); // Set loading state to true
+        try {
+          const response = await axios.get(`http://localhost:5000/user/getprofile/${storedEmail}`);
+          
+    
+          if (response.status === 200) {
+            setProfile(response.data.user);
+          } else {
+            console.log('Error fetching user profile');
+          }
+         
+        } catch (error) {
+          console.error('Error fetching user profile:', error);
+        } finally {
+          setIsLoading(false); // Set loading state to false when done
+        }
+      };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const formData = new FormData();
-            formData.append("location", location);
+            formData.append('username', profile.username);
             formData.append("title", title);
+            formData.append("location", location);
+            formData.append("date",selectedDate);
             formData.append("content", content);
+            formData.append('imgFile', imgFile);
 
             //   const profileImageUrl = localStorage.getItem("profileImageUrl");
             //   formData.append("profileImageUrl", profileImageUrl);
 
-            const response = await axios.post("http://localhost:5000/api/blog/create", formData, {
+            const response = await axios.post("http://localhost:5000/blog/create", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -80,7 +106,7 @@ export default function Create() {
             <div className={styles.scaffold}>
                 {/* <img src={bgImg} alt="" /> */}
                 <center>
-                    <h1>Share your experience with others!!</h1>
+                    <h1 className={styles.h1}>Share your experience with others!!</h1>
                 </center>
                 <div className={styles.formBox}>
                     <form onSubmit={handleSubmit}>
@@ -123,7 +149,7 @@ export default function Create() {
                         <textarea
                             name="content"
                             id="content"
-                            cols="51"
+                            cols="45"
                             rows="4"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
@@ -133,12 +159,13 @@ export default function Create() {
                         <br />
                         Upload the title image of your Blog: <br />
                         <input
-                            type="file"
-                            id="imgFile"
-                            name="imgFile"
-                            accept=".jpg, .jpeg, .png"
-                            onChange={handleImageFileChange}
-                            required
+                              type="file"
+                              id="imgFile"
+                              name="selectedFile" // Update this to match the expected field name
+                              accept=".jpg, .jpeg, .png"
+                              onChange={handleImageFileChange}
+                              required
+                          
                             className={styles.box1}
                         />
                         <br />

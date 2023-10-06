@@ -63,7 +63,7 @@ const Detailscontent = () => {
     const fetchUserDetailContent = async (storedEmail) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3001/getdetailcontent/${storedEmail}`);
+            const response = await axios.get(`http://localhost:5000/blog/getdetailcontent/${storedEmail}`);
 
             if (response.status === 200) {
                 setDetailContent(response.data.user);
@@ -81,7 +81,7 @@ const Detailscontent = () => {
     const fetchUserDetailContentImg = async (id) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3001/detailcontentimg/${id}`);
+            const response = await axios.get(`http://localhost:5000/blog/detailcontentimg/${id}`);
 
             console.log('API Response Data:', response.data);
 
@@ -132,6 +132,15 @@ const Detailscontent = () => {
         if (!titleDisabled && newTitle.trim() === '') {
             validationErrors.title = 'Title cannot be blank.';
         }
+        if (!locationDisabled && newLocation.trim() === '') {
+            validationErrors.location = 'Location cannot be blank.';
+        }
+        if (!dateDisabled && newDate.trim() === '') {
+            validationErrors.date = 'date cannot be blank.';
+        }
+        if (!contentDisabled && newContent.trim() === '') {
+            validationErrors.content = 'Title cannot be blank.';
+        }
 
         // Add similar validation checks for other fields (location, date, content)
 
@@ -139,7 +148,7 @@ const Detailscontent = () => {
             setErrors(validationErrors);
         } else if (loggedInUserEmail === detailContentImg.username) {
             try {
-                const response = await axios.post(`http://localhost:3001/detailcontent/${id}`, {
+                const response = await axios.post(`http://localhost:5000/blog/detailcontent/${id}`, {
                     username: detailContentImg.username,
                     newTitle: titleDisabled ? detailContentImg.title : newTitle,
                     newLocation: locationDisabled ? detailContentImg.location : newLocation,
@@ -149,7 +158,7 @@ const Detailscontent = () => {
 
                 if (response.status === 200) {
                     alert('You have successfully updated your details');
-                    navigate('/');
+                    navigate(`/details/${detailContentImg._id}`);
                 } else {
                     alert('Update failed');
                     console.log('Update failed');
@@ -167,7 +176,7 @@ const Detailscontent = () => {
         <div className={styles['detailcontent-container']}>
             <div className={styles['detailcontent-image']}>
                 <Link to="#" style={{ textDecoration: 'none', color: 'blue' }}>
-                    <img className={styles['detailcontent-image-content']} src={`http://localhost:3001/profileimg/${detailContentImg.blogimg}`} alt="detailcontentimg" /><br></br> <br></br>
+                    <img className={styles['detailcontent-image-content']} src={`http://localhost:5000/blogimg/${detailContentImg.blogimg}`} alt="detailcontentimg" /><br></br> <br></br>
                 </Link>
                 <div className={styles['detailcontent-links-container']}>
                     <div className={styles['detailcontent-links-container-create']}>

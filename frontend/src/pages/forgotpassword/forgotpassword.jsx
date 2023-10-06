@@ -25,7 +25,7 @@ const ForgotpasswordForm = () => {
       setErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('http://localhost:3001/forgotpassword', {
+        const response = await axios.post('http://localhost:5000/user/forgotpassword', {
           username,
           
         });

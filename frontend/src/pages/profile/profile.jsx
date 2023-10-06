@@ -39,7 +39,7 @@ const Profile = () => {
   const fetchUserProfile = async (storedEmail) => {
     setIsLoading(true); // Set loading state to true
     try {
-      const response = await axios.get(`http://localhost:3001/getprofile/${storedEmail}`);
+      const response = await axios.get(`http://localhost:5000/user/getprofile/${storedEmail}`);
       
 
       if (response.status === 200) {
@@ -57,7 +57,7 @@ const Profile = () => {
   const fetchUserProfileimg = async (storedEmail) => {
     setIsLoading(true);
     try {
-      const responseimg = await axios.get(`http://localhost:3001/getprofileimg/${storedEmail}`);
+      const responseimg = await axios.get(`http://localhost:5000/user/getprofileimg/${storedEmail}`);
 console.log('API Response Data:', responseimg.data);
   
       if (responseimg.status === 200) {
@@ -110,7 +110,7 @@ console.log('API Response Data:', responseimg.data);
       setErrors(validationErrors);
     } else {
       try {
-        const response = await axios.post('http://localhost:3001/profile', {
+        const response = await axios.post('http://localhost:5000/user/profile', {
           username: profile.username,
           newemail: emailDisabled ? profile.email : newemail,
           newpassword: passwordDisabled ? profile.password : newpassword,
@@ -137,7 +137,7 @@ console.log('API Response Data:', responseimg.data);
       <div className={styles['profile-image']}> 
       <Link to="/profileimg" style={{ textDecoration: 'none', color: 'blue' }}>
 
-        <img className={styles['profile-image-content']} src={`http://localhost:3001/profileimg/${profileimg.image}`} alt="Profileimg" /><br></br> <br></br>
+        <img className={styles['profile-image-content']} src={`http://localhost:5000/profileimg/${profileimg.image}`} alt="Profileimg" /><br></br> <br></br>
         </Link>
         <div className={styles['profile-links-container']}>
           <div className={styles['profile-links-container-create']}>
