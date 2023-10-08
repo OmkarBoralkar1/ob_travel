@@ -30,9 +30,11 @@ const PORT1 = 5000;
 const PORT = process.env.PORT;
 const UserRoute =require('./Routes/User.js')
 const BlogRoute =require('./Routes/blog.js')
+const CommentRoute =require('./Routes/comments.js')
 
 app.use('/user',UserRoute)
 app.use('/blog',BlogRoute)
+app.use('/comment',CommentRoute)
 mongoose.connect('mongodb://127.0.0.1:27017/travel-blog', {
   useNewUrlParser: true,
   useUnifiedTopology: true,

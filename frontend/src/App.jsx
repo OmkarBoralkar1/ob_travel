@@ -21,6 +21,8 @@ import Create from 'components/create-blog/create-blog';
 import Profileimg from 'pages/profileimg/profileimg';
 import Details from 'pages/details/details';
 import Detailscontent from 'pages/Detail-content/detailcontent';
+import Blogimg from 'pages/blogimg/blogimg';
+import CommentForm from 'pages/comments/comments';
 const App = () => {
 
 
@@ -41,6 +43,8 @@ const App = () => {
             <Route path="/profile/*" element={<Profile />} />
             <Route path="/details/:id" element={<Details />} />
             <Route path="/details-content/:id" element={<Detailscontent />} />
+            <Route path="/Blogimg/:id" element={<Blogimg />} />
+            <Route path="/Comment/:id" element={<CommentForm />} />
           </Routes>
         </div>
     

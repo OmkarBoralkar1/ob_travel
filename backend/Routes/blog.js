@@ -153,6 +153,61 @@ router.post('/detailcontent/:id',async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+router.post('/uploadblogimg', uploadblog.single('selectedFile'), async (req, res) => {
+  const { id } = req.body; // Access the blog id
+  console.log('blogid:', id);
+  const { username } = req.body; // Access the username
+  console.log('the username to change blogimg:', username);
+  console.log(req.file);
+
+  try {
+    // Check if the user exists
+    let blogimg = await createblogmodel.findOne({_id:id });
+    if (!blogimg) {
+      // If the user does not have a blog image, create a new blogimg object
+      blogimg = new createblogmodel({
+        id,
+        username,
+        blogimg: req.file.filename,
+        origimg: req.file.originalname
+      });
+    } else {
+      // If the user already has a blog image, update it
+      blogimg.blogimg = req.file.filename;
+      blogimg.origimg = req.file.originalname;
+    }
+
+    // Save the blogimg object to the database
+    await blogimg.save();
+
+    // Return a success response
+    res.json({ message: 'Blog image updated successfully' });
+  } catch (error) {
+    // Handle error, send an error response, or log the error
+    console.error('Error updating blog image:', error);
+    res.status(500).json({ error: 'An error occurred while updating the blog image' });
+  }
+});
+router.get('/getblogimg/:id', async (req, res) => {
+  try {
+      const { id } = req.params;
+      console.log("the blog  id jwnforngonengg is", id)
+
+      // Check if the user exists
+      const blogimg = await createblogmodel.findOne({ _id: id });
+      console.log('the blogimg is njnfjnvnvfjvnj', blogimg)
+      if (!blogimg) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+
+      // Return only the necessary user profile data, not the entire user object
+     
+      res.status(200).json({ blogimg });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 
 module.exports =  router;

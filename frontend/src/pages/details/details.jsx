@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import DetailStyles from './details.module.css';
 import Navbar from 'components/navbar/Navbar';
@@ -8,6 +8,7 @@ function Details() {
     const [userblog, setBlog] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     const { id } = useParams();
     const blogid = id;
     console.log("the blogid is", id);
@@ -82,6 +83,7 @@ function Details() {
                                                     readOnly // Make it read-only if needed
                                                 />
                                             </Link>
+                                            <button className={DetailStyles['detail-commentbutton']} onClick={() => navigate(`/Comment/${userblog._id}`)}> Please write comments</button>
                                         </div>
                                     )}
                                 </>

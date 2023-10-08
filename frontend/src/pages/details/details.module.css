@@ -276,6 +276,25 @@
     margin-top: 0.5vw;
     transition: background-color 0.3s;
   }
+  .detail-commentbutton{
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-right: 60vw;
+    margin-top: 1vw;
+    width: 50vw;
+    height: 6vh;
+    font-weight: 500;
+    font-size: 1.1vw;
+    border-radius: 50px;
+    color: blue;
+    outline: none;
+    border: 0.5px solid blue;
+   
+}
+.detail-commentbutton:hover{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
   
   label {
     font-weight: bold;

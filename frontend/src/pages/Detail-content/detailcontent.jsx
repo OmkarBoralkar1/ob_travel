@@ -27,6 +27,7 @@ const Detailscontent = () => {
     const [locationDisabled, setLocationDisabled] = useState(true);
     const [dateDisabled, setDateDisabled] = useState(true);
     const [contentDisabled, setContentDisabled] = useState(true);
+    const [blogimgDisabled, setblogimgDisabled] = useState(true);
 
     useEffect(() => {
         // Load data from localStorage if it exists
@@ -104,6 +105,7 @@ const Detailscontent = () => {
             setTitleDisabled(false);
         }
     };
+ 
 
     const handleEditLocation = () => {
         if (loggedInUserEmail === detailContentImg.username) {
@@ -121,7 +123,7 @@ const Detailscontent = () => {
         if (loggedInUserEmail === detailContentImg.username) {
             setContentDisabled(false);
             // Focus the input field
-           
+
         }
     };
 
@@ -175,9 +177,27 @@ const Detailscontent = () => {
     return (
         <div className={styles['detailcontent-container']}>
             <div className={styles['detailcontent-image']}>
-                <Link to="#" style={{ textDecoration: 'none', color: 'blue' }}>
-                    <img className={styles['detailcontent-image-content']} src={`http://localhost:5000/blogimg/${detailContentImg.blogimg}`} alt="detailcontentimg" /><br></br> <br></br>
-                </Link>
+                <img
+                    className={styles['detailcontent-image-content']}
+                    src={`http://localhost:5000/blogimg/${detailContentImg.blogimg}`}
+                    alt="detailcontentimg"
+                    disabled={titleDisabled}
+                />
+                <br />
+                <br />
+                {loggedInUserEmail === detailContentImg.username ? (
+                    <Link
+                        to={`/Blogimg/${id}`}
+                        className={styles['detailcontent-edit-button']}
+                    >
+                        ✏️
+                    </Link>
+                ) : (
+                    // You can optionally render something else or nothing when the condition doesn't match
+                    <span>You do not have permission to edit this.</span>
+                )}
+
+
                 <div className={styles['detailcontent-links-container']}>
                     <div className={styles['detailcontent-links-container-create']}>
                         <Link to="/" style={{ textDecoration: 'none', color: 'blue' }}>
@@ -289,7 +309,7 @@ const Detailscontent = () => {
                                 required
                                 rows="8"  // You can adjust the number of rows as needed
                                 cols="40" // You can adjust the number of columns as needed
-                                 // Allow vertical resizing
+                            // Allow vertical resizing
                             /><br></br>
                             <Link
                                 onClick={handleEditContent}

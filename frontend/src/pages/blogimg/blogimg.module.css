@@ -1,17 +1,18 @@
+/* Global styles */
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
 
-/* Profileimg component styles */
-.profile-Heading {
+/* Blogimg component styles */
+.blog-Heading {
     font-family: 'Urbanist', sans-serif;
     color: #333;
 }
 
-.profile-container {
+.blog-container {
     padding: 20px;
     text-align: center;
 }
 
-.profile-image {
+.blog-image {
     border-radius: 10%;
     max-width: 80vw;
     height: 100vh;

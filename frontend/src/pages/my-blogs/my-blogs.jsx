@@ -33,7 +33,7 @@ export default function MyBlogs() {
     const fetchUserProfile = async (storedEmail) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3001/getprofile/${storedEmail}`);
+            const response = await axios.get(`http://localhost:5000/user/getprofile/${storedEmail}`);
 
             if (response.status === 200) {
                 setProfile(response.data.user);
@@ -50,7 +50,7 @@ export default function MyBlogs() {
     const fetchUserblogs = async (storedEmail) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://localhost:3001/getuserblogs/${storedEmail}`);
+            const response = await axios.get(`http://localhost:5000/blog/getuserblogs/${storedEmail}`);
 
             if (response.status === 200) {
                 console.log('User blogs data:', response.data); // Log the response data
@@ -102,7 +102,7 @@ export default function MyBlogs() {
                             userBlogs.slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage).map((blog) => (
                                 <div className={myblogStyles['my-blog-content']} key={blog._id}>
                                     <Link className={myblogStyles['my-blog-content-link']} to={`/details/${blog._id}`}>
-                                        <img className={myblogStyles['my-blog-image']}  src={`http://localhost:3001/profileimg/${blog.blogimg}`} alt="Travel" />
+                                        <img className={myblogStyles['my-blog-image']}  src={`http://localhost:5000/blogimg/${blog.blogimg}`} alt="Travel" />
                                         <h1>{blog.title}</h1>
                                     </Link>
                                 </div>
