@@ -10,29 +10,28 @@ import { Link } from 'react-router-dom';
 // import matheran from '../pictures/Matheran.jpeg'
 // import bilkat from '../pictures/bilkat.mp4'
 // import borabora from '../pictures/bora-bora-island.jpg'
-import borabora from '../../images/bora-bora-island.jpg'
-import sunset from '../../images/sunsetimage.jpg'
-import matheran from '../../images/Matheran.jpeg'
-import victoria from '../../images/Victoria-falls (2).jpg'
-import dhoodsagar from '../../images/Train-Crossing-Waterfalls-Dudhsagar-Falls.jpg'
-import travel from '../../images/travel.jpg'
-import contentImage from '../../images/stock-photo-141823007-1500x1000.jpg'
+
 import Navbar from 'components/navbar/Navbar';
 import axios from 'axios';
 import { AiOutlineSearch } from "react-icons/ai";
 export default function Stories() {
-
-    const [popularBlogs, setPopularBlogs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [userBlogs, setUserBlogs] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [popularBlogs, setPopularBlogs] = useState([]);
     const [error, setError] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [blogsPerPage] = useState(9);
+    const [blogsPerPage] = useState(12);
     const [totalPages, setTotalPages] = useState(2);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectplace, setSelectplace] = useState('');
     const [selectsort, setSelectsort] = useState('');
     const [select, setSelect] = useState('');
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,11 +39,16 @@ export default function Stories() {
                 const response = await axios.get(`http://localhost:5000/blog/popularblogs`);
 
                 if (response.status === 200) {
-                    console.log('blogs data are:', response.data); // Log the response data
+                    console.log('blogs data are:', response.data);
 
                     if (Array.isArray(response.data.popularBlogs) && response.data.popularBlogs.length > 0) {
-                        setBlogs(response.data.popularBlogs); // Update the 'blogs' state with the fetched data
-                        setTotalPages(Math.ceil(response.data.popularBlogs.length / blogsPerPage));
+                        const filteredBlogs = response.data.popularBlogs.filter((blog) => {
+                            const searchTerms = `${blog.title} ${blog.content} ${blog.location} ${blog.date}`.toLowerCase();
+                            return searchTerms.includes(searchQuery.toLowerCase());
+                        });
+
+                        setBlogs(filteredBlogs);
+                        setTotalPages(Math.ceil(filteredBlogs.length / blogsPerPage));
                     } else {
                         setBlogs([]);
                         setTotalPages(1);
@@ -59,23 +63,24 @@ export default function Stories() {
             }
         };
 
-        fetchData(); // Call the asynchronous function
-    }, []);
+        fetchData();
+    }, [searchQuery]);
+
     const indexOfLastBlog = currentPage * blogsPerPage;
     const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
     const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
-    // Function to change the current page
     const paginate = (pageNumber) => {
-        // Ensure the new page number is within bounds
         if (pageNumber >= 1 && pageNumber <= totalPages) {
             setCurrentPage(pageNumber);
         }
     };
+
     const handleContinentChange = (e) => {
         setSelect(e.target.value);
-        setSelectedDate(''); // Reset selected date when the continent selection changes
+        setSelectedDate('');
     };
+
     function truncateContent(content) {
         if (typeof content !== 'string') {
             return ''; // Handle the case when 'content' is not a string
@@ -99,6 +104,17 @@ export default function Stories() {
                 </div>
                 <h1 className={storiesStyles['stories-storyheading']} >Top Travel Sories </h1>
                 <p className={storiesStyles['stories-storysubheading']}>Explore our latest stories from our active users</p>
+                <div className={storiesStyles['stories-detailssearch']}>
+                    <div className={storiesStyles['stories-search-bar']}>
+                        <input
+                            type="search"
+                            placeholder="Explore stories from around the globe.."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                        />
+                        <AiOutlineSearch className={storiesStyles['stories-search-icon']} />
+                    </div>
+                </div>
                 <div className={storiesStyles['stories-row']}>
 
                     <div>
