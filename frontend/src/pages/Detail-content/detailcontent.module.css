@@ -9,6 +9,7 @@ body {
 
 /* CSS for the main detailcontent-links-container */
 .detailcontent-links-container {
+    width: 85vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,16 +33,19 @@ body {
     border: 0.5px solid #4169E1;
     cursor: pointer;
     transition: background-color 0.3s;
+    align-items: center;
   }
  
   /* CSS for the My Blogs container */
   .detailcontent-links-container-my-blog {
     align-items: center;
+    margin-right: 45vw;
+    align-items: center;
     background-color: white;
     margin-top: 1vw;
     padding: 0.5vw;
     padding-left: 2.5vw;
-    width: 11vw;
+    width: 15vw;
     height: 5vh;
     font-weight: 500;
     font-size: 1.1vw;

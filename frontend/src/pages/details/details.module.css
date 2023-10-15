@@ -319,8 +319,91 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+  .detail-container {
+    display: flex;
+   justify-content: space-around;
+  }
+  
+  .detail-box {
+    font-size: 1.5vw;
+    width: 18vw;
+    border: 0.1vw solid #007bff;
+    border-radius: 10vw;
+    padding: 2vw;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0.2vw 0.44vh rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .detail-box:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: scale(1.05);
+  }
+  
+  .label {
+    margin: 0;
+  }
+  .Detail-blogid {
+    margin-right: 65vw;
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    font-weight: 600; /* You can change the font weight if desired */
+    color: #333; /* Text color */
+    margin: 10px 0; /* Margin around the element */
+    /* Add more styles as per your design preferences */
+}
  
- 
+  .rating-table {
+    margin: 2vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #FFFFFF, #F2F2F2);
+}
+
+table {
+    justify-content: center;
+    align-items: center;
+    margin-right: 65vw;
+    width: 50%;
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+thead {
+  
+    background-color: #007bff;
+    color: #757272;
+    font-weight: 600;
+}
+
+th {
+    padding: 1.5vh 3vw;
+    text-align: center;
+}
+
+td {
+    padding: 1.5vh 3vw;
+    border: 1px solid #ccc;
+    text-align: center;
+    color: #333;
+    font-weight: 500;
+}
+
+tr:nth-child(odd) {
+    background: rgba(240, 240, 240, 0.9);
+}
+
+td:nth-child(2) {
+    color: #007bff;
+    font-weight: 600;
+    font-size: 1.6vw;
+}
   @media (max-width: 780px) {
     .Detail-body {
         background-attachment: fixed;

@@ -14,6 +14,15 @@ import { Link } from 'react-router-dom';
 import Navbar from 'components/navbar/Navbar';
 import axios from 'axios';
 import { AiOutlineSearch } from "react-icons/ai";
+
+function shuffleArray(array) {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+}
 export default function Stories() {
     const [isLoading, setIsLoading] = useState(false);
     const [userBlogs, setUserBlogs] = useState([]);
@@ -47,9 +56,11 @@ export default function Stories() {
                             return searchTerms.includes(searchQuery.toLowerCase());
                         });
 
-                        setBlogs(filteredBlogs);
                         setTotalPages(Math.ceil(filteredBlogs.length / blogsPerPage));
-                    } else {
+                        const shuffledBlogs = shuffleArray(filteredBlogs);
+                        setBlogs(shuffledBlogs);
+                    } 
+                    else {
                         setBlogs([]);
                         setTotalPages(1);
                     }

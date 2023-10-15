@@ -5,6 +5,15 @@ import axios from 'axios';
 import { AiOutlineSearch } from 'react-icons/ai';
 import Navbar from 'components/navbar/Navbar';
 
+function shuffleArray(array) {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    return shuffledArray;
+}
+
 export default function Destination() {
     const [isLoading, setIsLoading] = useState(false);
     const [userBlogs, setUserBlogs] = useState([]);
@@ -38,9 +47,11 @@ export default function Destination() {
                             return searchTerms.includes(searchQuery.toLowerCase());
                         });
 
-                        setBlogs(filteredBlogs);
                         setTotalPages(Math.ceil(filteredBlogs.length / blogsPerPage));
-                    } else {
+                        const shuffledBlogs = shuffleArray(filteredBlogs);
+                        setBlogs(shuffledBlogs);
+                    } 
+                    else {
                         setBlogs([]);
                         setTotalPages(1);
                     }
@@ -56,7 +67,6 @@ export default function Destination() {
 
         fetchData();
     }, [searchQuery]);
-
     const indexOfLastBlog = currentPage * blogsPerPage;
     const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
     const currentBlogs = blogs.slice(indexOfFirstBlog, indexOfLastBlog);

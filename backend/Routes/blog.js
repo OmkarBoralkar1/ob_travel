@@ -211,5 +211,3 @@ router.get('/getblogimg/:id', async (req, res) => {
 
 
 module.exports =  router;
-
-
