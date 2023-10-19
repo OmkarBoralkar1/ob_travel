@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
+
+/* Global styles */
+.detailcontent-Heading,
+body {
+    font-family: 'Urbanist', sans-serif;
+    color: #333;
+}
+
+/* CSS for the main detailcontent-links-container */
+.detailcontent-links-container {
+    width: 85vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  /* CSS for the Create Blogs container */
+  .detailcontent-links-container-create {
+    align-items: center;
+    background-color: white;
+    margin-top: 1vw;
+    padding: 0.5vw;
+    width: 15vw;
+    height: 5vh;
+    font-weight: 500;
+    font-size: 1.1vw;
+    padding-left: 2.5vw;
+    border-radius: 50px;
+    color: #4169E1;
+    outline: none;
+    border: 0.5px solid #4169E1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-items: center;
+  }
+ 
+  /* CSS for the My Blogs container */
+  .detailcontent-links-container-my-blog {
+    align-items: center;
+    margin-right: 45vw;
+    align-items: center;
+    background-color: white;
+    margin-top: 1vw;
+    padding: 0.5vw;
+    padding-left: 2.5vw;
+    width: 15vw;
+    height: 5vh;
+    font-weight: 500;
+    font-size: 1.1vw;
+    border-radius: 50px;
+    color: #4169E1;
+    outline: none;
+    border: 0.5px solid #4169E1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* CSS for the detailcontent-link elements (inside both containers) */
+  .detailcontent-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .detailcontent-link:hover {
+    color: #007bff;
+  }
+  
+  /* CSS for the detailcontent-link elements */
+  .detailcontent-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .detailcontent-link:hover {
+    color: #007bff;
+  }
+  .detailcontent-create-blog{
+    font-size: 2vw;
+
+  }
+
+/* Container styles */
+.detailcontent-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 2% 5%;
+}
+
+/* Image styles */
+.detailcontent-image-content {
+    width: 90vw;
+    height: 90vh;
+    border-radius: 5%; 
+}
+
+
+/* Form styles */
+.detailcontent-content {
+    width: 100vw;
+    
+    padding: 5% 0.5%;
+    align-items: center;
+}
+.detailcontent-blogcontent{
+    font-size: 1.8vw;
+    width: 200vh;
+    height: auto;
+    resize: 'both';
+    overflow: scroll;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    border-bottom: 1px solid #686666;
+    outline: none;
+}
+
+/* Button styles */
+.detailcontent-button, .detailcontent-loginbutton {
+    align-items: center;
+    background-color: white;
+    margin-top: 1vw;
+    padding: 0.5vw;
+    width: 470px;
+    height: 60px;
+    font-weight: 500;
+    font-size: 1.1vw;
+    border-radius: 50px;
+    color: #4169E1;
+    outline: none;
+    border: 0.5px solid #4169E1;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.detailcontent-button:hover, .detailcontent-loginbutton:hover {
+    background-color: #4169E1;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* Google button styles */
+.detailcontent-google {
+    display: inline-block;
+    width: 60%;
+    height: 8vh;
+    font-weight: 500;
+    font-size: 24px;
+    border-radius: 50px;
+    background-color: transparent;
+}
+
+.detailcontent-google-icon {
+    display: inline-block;
+    margin-top: 0.5vw;
+}
+
+.detailcontent-google-text {
+    align-items: center;
+    margin-top: 0.5vw;
+    padding: 0.7vw;
+    width: 60%;
+    font-weight: 500;
+    font-size: 1.5vw;
+    border-radius: 50px;
+    background-color: transparent;
+}
+
+/* Label and input styles */
+.detailcontent-label {
+    font-size: 1.2vw;
+    color: var(--light-black);
+}
+
+.detailcontent-input {
+    font-size: 1.8vw;
+    height: 5vh;
+    width: 100%;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
+    border-bottom: 1px solid #686666;
+    outline: none;
+}
+
+/* Headings styles */
+h3 {
+    display: inline;
+}
+
+/* Custom Font style */
+.detailcontent-font {
+    font-family: 'Urbanist', sans-serif;
+    color: blue;
+}
+
+h6 {
+    font-size: 120%;
+}
+
+h5 {
+    float: right;
+    padding-right: 30%;
+    font-size: medium;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1080px) {
+    .detailcontent-container {
+        margin-left: 2.5vw;
+        padding: 0;
+    }
+
+    .detailcontent-image-content {
+        width: 100vw;
+        border-radius: 50%;
+    }
+    .detailcontent-create-blog{
+        
+        padding-top: 20vw;
+        font-size: 4.5vw;
+    }
+    .detailcontent-links-container-create{
+        margin-left: 10vw;
+        width: 28vw; /* Make both containers full-width on smaller screens */
+        font-size: auto; /* Adjust font size as needed for smaller screens */
+        margin-top: 10vh;
+    }
+    .detailcontent-links-container-my-blog {
+        margin-right: 20vw;
+        width: 23vw; /* Make both containers full-width on smaller screens */
+        font-size: auto; /* Adjust font size as needed for smaller screens */
+        margin-top: 10vh; /* Add margin-top back if needed */
+    }
+
+
+    .detailcontent-form {
+        flex-basis: 100%;
+    }
+
+    .detailcontent-input {
+        font-size: 25px;
+        width: 100vw;
+    }
+
+    .detailcontent-label {
+        font-size: 24px;
+    }
+
+    .detailcontent-google {
+        width: 105%;
+    }
+
+    .detailcontent-content {
+        align-items: center;
+        text-align: left;
+    }
+
+    .detailcontent-button, .detailcontent-loginbutton {
+        margin-top: 20px;
+        width: 90vw;
+        font-size: 20px;
+        margin-left: 0;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h5 {
+        float: right;
+        font-size: small;
+        text-align: right;
+    }
+}
