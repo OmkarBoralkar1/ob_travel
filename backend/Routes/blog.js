@@ -14,9 +14,7 @@ const storageblog = multer.diskStorage({
     },
 });
 
-const uploadblog = multer({
-    storage: storageblog
-})
+const uploadblog = multer({ storageblog, limits: { fileSize: 50 * 1024 * 1024 } });
 
 router.post('/create', uploadblog.single('imgFile'), async (req, res) => {
   const { username,title,location,date,content } = req.body; // Access the username
@@ -127,7 +125,7 @@ router.get('/detailcontentimg/:id',async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-router.post('/detailcontent/:id',async (req, res) => {
+router.post('/detailcontent/:id',uploadblog.single('file'),async (req, res) => {
   try {
     const { id } = req.params;
     console.log("the blogid detail content  to chnge is", id);

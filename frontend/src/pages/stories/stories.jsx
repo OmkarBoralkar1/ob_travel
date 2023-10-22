@@ -97,8 +97,15 @@ export default function Stories() {
             return ''; // Handle the case when 'content' is not a string
         }
     
-        const lines = content.split('\n'); // Split the content by line breaks
-        const truncatedContent = lines.slice(0,2).join('\n'); // Get the first two lines and join them
+        // Use a regular expression to remove HTML tags
+        const plainText = content.replace(/<[^>]*>/g, '');
+    
+        // Split the plain text by line breaks
+        const lines = plainText.split('\n');
+    
+        // Get the first two lines and join them
+        const truncatedContent = lines.slice(0, 1).join('\n');
+    
         return truncatedContent;
     }
 

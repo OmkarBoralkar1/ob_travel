@@ -84,7 +84,7 @@ const SignupForm = () => {
         <form className={styles['signup-form']} onSubmit={handleSubmit} action='Post'>
           <div>
             <label htmlFor="Name" className={styles['signup-label']}>
-              FullName:
+              UserName:
             </label><br></br>
             <input
               className={styles['signup-input']}

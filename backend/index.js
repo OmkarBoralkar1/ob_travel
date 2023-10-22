@@ -4,19 +4,21 @@ const cors = require("cors");
 const mongoose = require('mongoose');
 const router = express.Router();
 
-const path =require('path');
+const path = require('path');
 //router imports
 
-
 //util imports
-
 
 //app config
 const app = express();
 const signupModel = require('./models/signup.js');
-const profileimgmodel =require('./models/profileimg.js');
-const createblogmodel =require('./models/create-blog.js');
-app.use(express.json());
+const profileimgmodel = require('./models/profileimg.js');
+const createblogmodel = require('./models/create-blog.js');
+
+// Increase the request size limit
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 app.use(cors());
 app.use(express.static('public'))
 

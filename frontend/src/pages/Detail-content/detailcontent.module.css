@@ -56,6 +56,28 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
   }
+  .image-selected {
+    cursor: zoom-out; /* You can set your preferred cursor style here */
+  }
+  /* Add this CSS to your stylesheets to style selected images */
+.ql-snow .ql-image.active {
+    border: 1px dashed #3498db; /* Add a dashed border to selected images */
+    position: relative;
+  }
+  
+  .ql-snow .ql-image.active::after {
+    content: 'Resize'; /* Add text or other content to indicate resizing */
+    position: absolute;
+    bottom: -20px; /* Adjust the position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    color: #3498db;
+    background: #fff;
+    padding: 2px 5px;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+  }
+  
   
   /* CSS for the detailcontent-link elements (inside both containers) */
   .detailcontent-link {
@@ -112,6 +134,7 @@ body {
     font-size: 1.8vw;
     width: 200vh;
     height: auto;
+    overflow: scroll;
     resize: 'both';
     overflow: scroll;
     border-top: transparent;

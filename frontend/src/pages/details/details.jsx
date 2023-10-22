@@ -114,8 +114,8 @@ function Details() {
                                                 <ReactQuill
                                                     className={DetailStyles['Detail-contents']}
                                                     value={userblog.content}
-                                                    rows="10"
-                                                    cols="30"
+                                                    rows="8"
+                                                    cols="40"
                                                     style={{ resize: 'both' }}
                                                     readOnly
                                                 />
