@@ -61,6 +61,8 @@ const Detailscontent = () => {
         fetchUserDetailContentImg(id);
       }
     }
+    fetchUserDetailContent(id);
+    fetchUserDetailContentImg(id);
   }, [id]);
 
   useEffect(() => {
@@ -217,7 +219,7 @@ const Detailscontent = () => {
   };
 
   const quillFormats = [
-    'header', 'font', 'list', 'bold', 'italic', 'underline', 'image'
+    'header', 'font', 'list', 'bold', 'italic', 'underline', 'image','size'
   ];
 
   return (
@@ -274,7 +276,7 @@ const Detailscontent = () => {
                 Title:
               </label>
               <br />
-              <input
+              <textarea
                 className={styles['detailcontent-input']}
                 type="text"
                 id="newTitle"
@@ -297,7 +299,7 @@ const Detailscontent = () => {
                 Location:
               </label>
               <br />
-              <input
+              <textarea
                 className={styles['detailcontent-input']}
                 type="text"
                 id="newLocation"
@@ -355,6 +357,7 @@ const Detailscontent = () => {
                   required
                   rows="8"
                   cols="40"
+                  style={{ resize: 'both' }}
                 />
               </div>
               <Link

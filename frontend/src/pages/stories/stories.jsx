@@ -31,7 +31,7 @@ export default function Stories() {
     const [error, setError] = useState(null);
     const [blogs, setBlogs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [blogsPerPage] = useState(12);
+    const [blogsPerPage] = useState(8);
     const [totalPages, setTotalPages] = useState(2);
     const [selectedDate, setSelectedDate] = useState('');
     const [selectplace, setSelectplace] = useState('');
@@ -156,7 +156,7 @@ export default function Stories() {
                                                     </h5>
                                                 </div>
                                                 <h1>{blog.title}</h1>
-                                                <h6 className={storiesStyles['stories-content']}>{truncateContent(blog.content)}</h6>
+                                                <h6 className={storiesStyles['stories-contents']}>{truncateContent(blog.content)}</h6>
                                             </Link>
                                         </div>
                                     ))}

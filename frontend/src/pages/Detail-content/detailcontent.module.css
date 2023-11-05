@@ -133,7 +133,7 @@ body {
 .detailcontent-blogcontent{
     font-size: 1.8vw;
     width: 200vh;
-    height: auto;
+    max-height: 150vh;
     overflow: scroll;
     resize: 'both';
     overflow: scroll;
@@ -234,71 +234,89 @@ h5 {
 }
 
 /* Media query for smaller screens */
+/* Media query for smaller screens */
 @media (max-width: 1080px) {
     .detailcontent-container {
         margin-left: 2.5vw;
         padding: 0;
+        font-size: 10vw;
+        width: 100vw; /* Adjust width for smaller screens */
+    }
+
+    .detailcontent-blogcontent {
+        font-size: 2rem;
+        font-weight: 200rem;
+        width: 110%;
+        max-height: 100vh;
+        overflow: scroll;
     }
 
     .detailcontent-image-content {
-        width: 100vw;
-        border-radius: 50%;
+        width: 140vw; /* Adjust image width for smaller screens */
+        border-radius: 10%; /* Adjust border radius if needed */
     }
-    .detailcontent-create-blog{
-        
-        padding-top: 20vw;
-        font-size: 4.5vw;
+
+    .detailcontent-create-blog {
+        padding-top: 20vw; /* Adjust padding for smaller screens */
+        font-size: 4.5vw; /* Adjust font size for smaller screens */
     }
-    .detailcontent-links-container-create{
-        margin-left: 10vw;
-        width: 28vw; /* Make both containers full-width on smaller screens */
-        font-size: auto; /* Adjust font size as needed for smaller screens */
-        margin-top: 10vh;
-    }
+
+    .detailcontent-links-container-create,
     .detailcontent-links-container-my-blog {
-        margin-right: 20vw;
-        width: 23vw; /* Make both containers full-width on smaller screens */
+        width: 100%; /* Make both containers full-width on smaller screens */
         font-size: auto; /* Adjust font size as needed for smaller screens */
         margin-top: 10vh; /* Add margin-top back if needed */
     }
-
 
     .detailcontent-form {
         flex-basis: 100%;
     }
 
     .detailcontent-input {
-        font-size: 25px;
-        width: 100vw;
+        /* Hide horizontal overflow */
+        font-size: 2.5rem;
+        max-height: 100vh;
+        width: 150%;
+        height: 100%;
+        word-wrap: break-word; /* Allow text to wrap to the next line when it overflows */
     }
 
     .detailcontent-label {
-        font-size: 24px;
+        font-size: 40px;
     }
 
-    .detailcontent-google {
-        width: 105%;
-    }
-
-    .detailcontent-content {
-        align-items: center;
-        text-align: left;
-    }
-
-    .detailcontent-button, .detailcontent-loginbutton {
+    .detailcontent-button,
+    .detailcontent-loginbutton {
         margin-top: 20px;
-        width: 90vw;
-        font-size: 20px;
+        width: 100%;
+        height: 10vh;
+        font-size: 50px;
         margin-left: 0;
     }
 
     h3 {
-        font-size: 18px;
+        font-size: 180px;
     }
 
     h5 {
         float: right;
         font-size: small;
         text-align: right;
+    }
+
+    .ql-snow .ql-editor {
+        font-size: 200rem; /* Adjust the font size for the Quill text editor */
+    }
+
+    .ql-snow .ql-toolbar {
+        font-size: 100rem; /* Adjust the font size for the Quill toolbar */
+    }
+
+    .custom-quill-editor {
+        font-size: 18px; /* Adjust the font size as needed */
+    }
+    .detailcontent-content textarea{
+        font-size: 3rem;
+        overflow: scroll;
     }
 }

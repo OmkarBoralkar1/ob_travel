@@ -116,6 +116,7 @@
 }
 
 .stories-content {
+    overflow: hidden;
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -283,9 +284,23 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+  .stories-contents{
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 39.5vw; /* Adjust width and margin to control spacing */
+    margin:2vw;
+    height: 15vh;
+    background-color: transparent;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
+    overflow: hidden;
+  }
  
-@media (max-width: 780px) {
-   
+/* Media Query for smaller screens */
+@media (max-width: 1080px) {
     .stories-body {
         background-attachment: fixed;
         background-color: white;
@@ -293,31 +308,82 @@
     .stories-upperbody {
         background-image: url('../../images/mountain celebration.jpeg');
         background-size: cover; /* Ensure the image covers the entire container */
-        width: 100vw;
-        height: 50vh; /* Adjust the height as needed for smaller screens */
-      }
+        width: 150%;
+        height: 100%;
+        animation: scrollImages 40s infinite linear; /* Add the scrollImages animation for smaller screens */
+    }
+
+    /* Add the keyframes for the scrollImages animation */
+    @keyframes scrollImages {
+        0% {
+            background-position-x: 0%;
+            background-image: url('../../images/Matheran.jpeg');
+        }
+        35% {
+            background-position-x: 100%;
+            background-image: url('../../images/travel.jpg');
+        }
+        75% {
+            background-position-x: 300%;
+            background-image: url('../../images/sunsetimage.jpg');
+        }
+        95% {
+            background-position-x: 600%;
+            background-image: url('../../images/Victoria-falls\ \(2\).jpg');
+        }
+        135% {
+            background-position-x: 0%;
+            background-image: url('../../images/bora-bora-island.jpg');
+        }
+    }
+
     .stories-row {
-        margin: 5px; /* Adjust margin for smaller screens */
+        margin: 0; /* Adjust margin for smaller screens */
         background-attachment: fixed;
         object-fit: cover;
-        width: 100vh;
+        font-size: 100dw;
+        width: 100%;
     }
     .stories-content {
+       
         width: 100%; /* Full width on mobile */
-        margin: 5px;
-        padding: 5px;
+        overflow: hidden;
+        padding: 20px;
+        font-size: 1000;
     }
     .stories-image {
-        width: 50vh;
-        height: 250px; /* Adjust the height as needed for smaller screens */
+        width: 100%;
+        height: 50vh; /* Adjust the height as needed for smaller screens */
     }
     .stories-pictures {
-        width: 300%;
-        height: 300px;
-        object-fit: cover;
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px;
+        width: 100%;
+        height: 200px; /* Adjust the height as needed for smaller screens */
     }
-   
+    .pagination {
+        margin: 20px auto; /* Center the pagination */
+    }
+    .stories-detailselect {
+        margin: 10px 0; /* Adjust margins for destination-detailselect */
+    }
+    .stories-select-bar {
+        width: 100%; /* Full width for the select bar */
+        font-size: 16px; /* Adjust font size for the select bar */
+    }
+    label {
+        font-size: 16px; /* Adjust font size for labels */
+    }
+    select {
+        width: 100%; /* Full width for the select */
+        font-size: 16px; /* Adjust font size for the select */
+    }
+    .stories-place, .stories-date {
+        font-size: 16px;
+    }
+    .stories-contents {
+        width: 100%; /* Full width on mobile */
+        height: 20vh; /* Remove fixed height to allow content to adjust */
+        margin: 0; /* Remove margin */
+        overflow: hidden;
+        font-size: 10rem;
+    }
 }

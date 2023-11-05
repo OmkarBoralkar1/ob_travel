@@ -418,68 +418,108 @@ td:nth-child(2) {
     font-weight: 600;
     font-size: 1.6vw;
 }
-  @media (max-width: 780px) {
-    .Detail-body {
-        background-attachment: fixed;
-        background-color: white;
-    }
-    .Detail-upperbody {
-        background-image: url('../../images/mountain celebration.jpeg');
-        background-size: cover;
-        width: 100vw;
-        height: 50vh;
-    }
-    .Detail-row {
-        margin: 5px;
-        background-attachment: fixed;
-        object-fit: cover;
-        width: 100%;
-    }
-    .Detail-content {
-        width: 100%;
-        margin: 5px;
-        padding: 5px;
-    }
-    .Detail-image {
-        margin-left: 0;
-        width: 30vh;
-        height: 150vh;
-        height: auto; /* Adjust the height to maintain aspect ratio */
-    }
-    .Detail-pictures {
-        width: 95vw;
-        height: auto; /* Adjust the height to maintain aspect ratio */
-        object-fit: cover;
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px;
-    }
-    .Detail-content h1 {
-        font-size: 15vw; /* Adjust font size for smaller screens */
-    }
-    .Detail-content h6 {
-        font-size: 5vh; /* Adjust font size for smaller screens */
-    }
-    .Detail-place {
-        width: auto; /* Allow the content to flow naturally */
-        font-size: 10vw; /* Adjust font size for smaller screens */
-    }
-    .Detail-date {
-        width: auto; /* Allow the content to flow naturally */
-        font-size: 10vw; /* Adjust font size for smaller screens */
-        margin-right: 0; /* Remove the right margin */
-    }
-    .pagination button {
-        padding: 6px 12px; /* Adjust padding for smaller buttons */
-        height: auto; /* Adjust button height for smaller screens */
-        font-size: 2vw; /* Adjust font size for smaller screens */
-    }
-    select {
-        width: 100%; /* Full width for select box */
-        font-size: 2vw; /* Adjust font size for smaller screens */
-    }
-    .detailcontent-links-container {
-        width: 100%; /* Full width for smaller screens */
-        font-size: 2vw; /* Adjust font size for smaller screens */
-    }
+/* Media Query for smaller screens */
+@media (max-width: 1080px) {
+  /* Common styles for mobile (max-width: 1080px) */
+
+.Detail-body {
+    background-attachment: fixed;
+    background-color: white;
+}
+
+.Detail-upperbody {
+    background-image: url('../../images/mountain celebration.jpeg');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.Detail-row {
+    margin: 0;
+    background-attachment: fixed;
+    object-fit: cover;
+    width: 100%;
+}
+
+.Detail-content {
+    width: 100%;
+    padding: 10px;
+}
+
+.Detail-image {
+    width: 140vw;
+    height: auto;
+}
+
+.Detail-pictures {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2vw;
+    margin: 10px;
+}
+
+.Detail-contents {
+    font-weight: 100vw;
+    width: 80%;
+    max-height: 80%;
+    overflow: scroll;
+}
+
+.detail-commentbutton {
+    margin-right: 50%;
+    width: 70%;
+    height: auto;
+    font-size: 8vw;
+}
+
+.rating-table td {
+    font-size: 8vw;
+}
+
+.Detail-contents {
+    margin-left: 5%;
+    margin-top: 5%;
+    font-size: 10vw;
+    width: 50%;
+    overflow: scroll;
+}
+
+.Detail-content h1 {
+    font-size: 10vw;
+    width: 70%;
+}
+
+.Detail-content h6 {
+    font-size: 4vw;
+}
+
+.Detail-place {
+    width: auto;
+    font-size: 5vw;
+}
+
+.Detail-date {
+    width: auto;
+    font-size: 5vw;
+    margin-right: 0;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    height: auto;
+    font-size: 2vw;
+}
+
+select {
+    width: 100%;
+    font-size: 2vw;
+}
+
+.detailcontent-links-container {
+    width: 80%;
+    font-size: 2vw;
+}
 }

@@ -162,4 +162,27 @@ body {
         margin-left: 0;
         margin-top: 10px;
     }
+
+    .header {
+        padding: 10px 5vw; /* Adjust header padding for smaller screens */
+    }
+
+    .centered {
+        font-size: 18px; /* Adjust font size for centered navigation items */
+    }
+
+    .centered li {
+        margin-left: 0; /* Reset left margin for centered items */
+    }
+
+    .Signup,
+    .Login {
+        margin-left: 0;
+        margin-right: 10px; /* Adjust spacing for Signup and Login on smaller screens */
+    }
+    .Login-button{
+        width: auto;
+        height: auto;
+        font-size: 3vw;
+    }
 }

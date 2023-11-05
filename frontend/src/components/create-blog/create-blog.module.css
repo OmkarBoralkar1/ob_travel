@@ -65,8 +65,22 @@ button:hover{
 
 
 /* Media Query for smaller screens */
-@media (max-width: 768px) {
-    .create-form {
-        max-width: 100%;
+@media (max-width: 1080px) {
+    .formBox {
+        width: 90vw; /* Adjust the formBox width for smaller screens */
+        height: auto; /* Allow the height to adapt based on content */
+        font-size: 6vw; /* Reduce font size for smaller screens */
+    }
+
+    .box1,
+    .box2 {
+        width: 80%; /* Adjust the width of input boxes for smaller screens */
+        font-size: 6vw; /* Reduce font size for input boxes on smaller screens */
+    }
+
+    button {
+       margin-left: 20vw;
+        width: 30vw; /* Adjust button width for smaller screens */
+        font-size: 6vw; /* Reduce button font size for smaller screens */
     }
 }

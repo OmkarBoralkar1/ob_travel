@@ -189,18 +189,20 @@ select {
     transition: background-color 0.3s;
   }
 
-@media (max-width: 780px) {
-   
+/* Media Query for smaller screens */
+@media (max-width: 1080px) {
     .destination-body {
         background-attachment: fixed;
         background-color: white;
     }
     .destination-upperbody {
+        justify-content: space-between;
         background-image: url('../../images/mountain celebration.jpeg');
         background-size: cover; /* Ensure the image covers the entire container */
-        width: 100vw;
+        width: 100%;
         height: 50vh; /* Adjust the height as needed for smaller screens */
-      }
+    }
+   
     .destination-row {
         margin: 5px; /* Adjust margin for smaller screens */
         background-attachment: fixed;
@@ -224,5 +226,28 @@ select {
         flex-wrap: wrap;
         margin: 10px;
     }
-   
+    .pagination {
+        margin-left: 10vw; /* Adjust the pagination's left margin for smaller screens */
+    }
+    .destination-detailselect {
+        margin-right: 5vw; /* Adjust margin-right for destination-detailselect */
+        margin-left: 10px; /* Adjust margin-left for destination-detailselect */
+    }
+    .destination-search-bar{
+        width: 50%; /* Adjust the width of the select bar for smaller screens */
+        font-size: 1.5vw;
+    }
+    .destination-select-bar {
+        width: 50%; /* Adjust the width of the select bar for smaller screens */
+        font-size: 1.5vw; /* Adjust font size for the select bar */
+    }
+    label {
+        font-size: 1.2vw; /* Adjust font size for labels */
+        margin-bottom: 5px; /* Adjust margin-bottom for labels */
+    }
+    select {
+        width: 80%; /* Adjust the width of the select for smaller screens */
+        font-size: 1.2vw; /* Adjust font size for the select */
+        margin-top: 5px; /* Adjust margin-top for select */
+    }
 }
