@@ -12,12 +12,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
     background-color: transparent;
     color: white;
     max-height: 20vh; /* Add max-height to contain the elements within the header */
     overflow: hidden; /* Hide overflow content */
-    padding: 2vw 18vw;
+    padding: 1.2vw 15vw;
 }
 
 /* Centered navigation items */

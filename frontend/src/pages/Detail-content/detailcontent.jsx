@@ -135,6 +135,7 @@ const Detailscontent = () => {
   };
 
   const handleSubmit = async (e) => {
+    // alert('are you sure you want to update details')
     e.preventDefault();
     const validationErrors = {};
     console.log('the new title is', newTitle);
@@ -189,7 +190,8 @@ const Detailscontent = () => {
           alert('Error during update. Please try again later.');
         }
       } else {
-        alert('Form data is empty. Please fill in the details.');
+        // alert('Form data is empty. Please fill in the details.');
+        alert('You dont have permission to edit this.');
       }
    
   };
@@ -204,24 +206,29 @@ const Detailscontent = () => {
     }
     return false;
   }
-  
   const quillModules = {
     toolbar: [
-      [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      ['blockquote', 'code-block'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      ['bold', 'italic', 'underline'],
-      ['image'],
+      ['image', 'link'],
+      ['clean'],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'font': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'style': ['font-size'] }],
     ],
     imageResize: {
-      // Configuration options for image resizing (you can adjust these)
       modules: ['Resize', 'DisplaySize', 'Toolbar'],
     },
   };
 
   const quillFormats = [
-    'header', 'font', 'list', 'bold', 'italic', 'underline', 'image','size'
+    'header', 'font', 'list', 'bold', 'italic', 'underline', 'image', 'size', 'link'
   ];
-
+  
+  
+  
   return (
     <div className={styles['detailcontent-container']}>
       <div className={styles['detailcontent-image']}>
@@ -345,6 +352,7 @@ const Detailscontent = () => {
                 Content:
               </label>
               <br />
+              
               <div className={imageSelected ? `${styles['detailcontent-blogcontent']} ${styles['image-selected']}` : styles['detailcontent-blogcontent']}>
                 <ReactQuill
                   name="newcontent"
@@ -368,7 +376,7 @@ const Detailscontent = () => {
               </Link>
             </div>
             <br />
-            <button type="submit" className={styles['detailcontent-button']}>
+            <button type="submit" className={styles['detailcontent-button']} onClick={() => alert("Are you sure you want to update the details!")}>
               Update Details
             </button>
             <br />

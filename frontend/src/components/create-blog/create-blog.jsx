@@ -95,16 +95,22 @@ export default function Create() {
     };
     const quillModules = {
         toolbar: [
-            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
             [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            ['bold', 'italic', 'underline'],
-            ['image'],
-        ],
+            ['image', 'link'],
+            ['clean'],
+            [{ 'size': ['small', false, 'large', 'huge'] }],
+            [{ 'font': [] }],
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [{ 'style': ['font-size'] }],
+          ],
+          
     };
 
     const quillFormats = [
-        'header', 'font', 'list', 'bold', 'italic', 'underline', 'image'
-    ];
+        'header', 'font', 'list', 'bold', 'italic', 'underline', 'image', 'size', 'link'
+      ];
     //   const handleContinentChange = (e) => {
     //     setSelect(e.target.value);
     //     setSelectedDate(""); // Reset selected date when the continent selection changes
@@ -179,7 +185,7 @@ export default function Create() {
                             className={styles.box1}
                         />
                         <br />
-                        <button type="submit">Upload</button>
+                        <button type="submit" onClick={() => alert("Are you sure you want to upload the blog!")}>Upload</button>
                     </form>
                 </div>
             </div>
