@@ -33,14 +33,14 @@ function Profileimg() {
     setIsLoading(true); // Set loading state to true
     try {
       const response = await axios.get(`http://localhost:5000/user/getprofile/${storedEmail}`);
-      
+
 
       if (response.status === 200) {
         setProfile(response.data.user);
       } else {
         console.log('Error fetching user profile');
       }
-     
+
     } catch (error) {
       console.error('Error fetching user profile:', error);
     } finally {
@@ -51,8 +51,8 @@ function Profileimg() {
     setIsLoading(true);
     try {
       const responseimg = await axios.get(`http://localhost:5000/user/getprofileimg/${storedEmail}`);
-console.log('API Response Data:', responseimg.data);
-  
+      console.log('API Response Data:', responseimg.data);
+
       if (responseimg.status === 200) {
         setProfileimg(responseimg.data.userimg);
         console.log('v jvfnbrjb gjh bhjervfehv evr', setProfileimg)

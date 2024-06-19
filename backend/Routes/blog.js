@@ -74,6 +74,8 @@ router.get('/getuserblogs/:storedEmail', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+
 router.get('/popularblogs', async (req, res) => {
   try {
     // Fetch popular blogs based on your desired criteria

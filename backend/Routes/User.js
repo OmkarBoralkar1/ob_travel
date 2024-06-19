@@ -4,6 +4,7 @@ const multer =require('multer');
 const signupModel = require('../models/signup'); 
 const profileimgmodel =require('../models/profileimg.js');
 const path =require('path');
+
 router.post('/register', async (req, res) => {
     const { username, email, password, confirmpassword } = req.body;
     console.log(req.body)
@@ -194,7 +195,8 @@ router.post('/upload', upload.single('selectedFile'), async (req, res) => {
                 image: req.file.filename,
                 origimg: req.file.originalname
             });
-        } else {
+        } 
+        else {
             // If the user already has a profile image, update it
             userimg.image = req.file.filename;
             userimg.origimg = req.file.originalname;
@@ -211,6 +213,8 @@ router.post('/upload', upload.single('selectedFile'), async (req, res) => {
         res.status(500).json({ error: 'An error occurred while updating the profile image' });
     }
 });
+
+
 
 router.get('/getprofileimg/:storedEmail', async (req, res) => {
     try {
